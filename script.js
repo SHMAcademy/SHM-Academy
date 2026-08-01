@@ -64,6 +64,15 @@
     window.requestAnimationFrame(step);
   }
 
+  // Reel videos — fall back to the animated visual if a clip is missing/fails to load
+  document.querySelectorAll('.reel-video').forEach(function (video) {
+    function useFallback() { video.style.display = 'none'; }
+    video.addEventListener('error', useFallback, true);
+    setTimeout(function () {
+      if (video.readyState === 0) useFallback();
+    }, 1500);
+  });
+
   // Mobile nav toggle
   var toggle = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');
