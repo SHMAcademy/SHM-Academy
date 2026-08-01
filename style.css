@@ -358,11 +358,16 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
   border:1px solid var(--line);
   background:linear-gradient(160deg, #22163a, #120e1e 70%);
 }
-.reel video{ width:100%; height:100%; object-fit:cover; display:block; }
+.reel-video{
+  position:absolute; inset:0; z-index:2;
+  width:100%; height:100%; object-fit:cover; display:block;
+  background:#000;
+}
 
-/* Self-contained animated visuals used in place of uploaded video clips */
+/* Self-contained animated visuals — sit behind the video and act as the
+   fallback whenever no reel file has been uploaded yet, or it fails to load */
 .reel-visual{
-  position:relative; width:100%; height:100%;
+  position:absolute; inset:0; z-index:1;
   display:flex; align-items:center; justify-content:center;
   overflow:hidden;
 }
@@ -386,7 +391,7 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
   stroke:#fff; filter:drop-shadow(0 6px 18px rgba(0,0,0,0.35));
 }
 .reel .reel-label{
-  position:absolute; left:14px; bottom:14px; right:14px;
+  position:absolute; z-index:3; left:14px; bottom:14px; right:14px;
   font-size:13.5px; font-weight:600;
   display:flex; align-items:center; gap:8px;
 }
@@ -397,7 +402,7 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
 }
 .reel .reel-label .play svg{ width:11px; height:11px; fill:#fff; }
 .reel::after{
-  content:""; position:absolute; inset:0;
+  content:""; position:absolute; inset:0; z-index:2;
   background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.75));
   pointer-events:none;
 }
