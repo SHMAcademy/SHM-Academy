@@ -202,9 +202,12 @@
 
     <div class="reels">
       <div class="reel reveal">
-        <!-- No video file yet — this animated visual fills the space.
-             To use a real clip instead, add reels/reel-1.mp4 and swap this
-             .reel-visual block for: <video autoplay muted loop playsinline><source src="reels/reel-1.mp4" type="video/mp4"></video> -->
+        <!-- Add your own clip at reels/reel-1.mp4 and it will play automatically.
+             If the file is missing, the animated visual behind it shows instead. -->
+        <video class="reel-video" autoplay muted loop playsinline
+               onerror="this.style.display='none';">
+          <source src="reels/reel-1.mp4" type="video/mp4">
+        </video>
         <div class="reel-visual rv-growth">
           <div class="rv-ring"></div>
           <svg class="rv-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
@@ -215,7 +218,11 @@
         </div>
       </div>
       <div class="reel reveal">
-        <!-- Swap for reels/reel-2.mp4 the same way once you have a clip. -->
+        <!-- Add your own clip at reels/reel-2.mp4 -->
+        <video class="reel-video" autoplay muted loop playsinline
+               onerror="this.style.display='none';">
+          <source src="reels/reel-2.mp4" type="video/mp4">
+        </video>
         <div class="reel-visual rv-campaign">
           <div class="rv-ring"></div>
           <svg class="rv-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a2 2 0 0 0 2 2h1l3 5h2l-1-5h6l4 3V6l-4 3H9L6 3H5a2 2 0 0 0-2 2v2"/></svg>
@@ -226,7 +233,11 @@
         </div>
       </div>
       <div class="reel reveal">
-        <!-- Swap for reels/reel-3.mp4 the same way once you have a clip. -->
+        <!-- Add your own clip at reels/reel-3.mp4 -->
+        <video class="reel-video" autoplay muted loop playsinline
+               onerror="this.style.display='none';">
+          <source src="reels/reel-3.mp4" type="video/mp4">
+        </video>
         <div class="reel-visual rv-verified">
           <div class="rv-ring"></div>
           <svg class="rv-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 15.9 6.7 18.1l1-5.8L3.5 8.2l5.9-.9L12 2z"/><path d="M9.5 12l1.8 1.8 3.2-3.6" stroke-width="1.4"/></svg>
@@ -330,4 +341,4 @@
 <script src="script.js"></script>
 </body>
   </html>
-  
+          
