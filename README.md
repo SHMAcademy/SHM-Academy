@@ -4,26 +4,28 @@ Static site: `index.html`, `style.css`, `script.js`. No build step needed.
 
 ## Add your own images/videos
 
-1. **Logo** — put your logo file next to `index.html` (e.g. `logo.png`), then in
-   `index.html` find the comment `=== LOGO SLOT ===` (inside `.brand-mark`) and
-   replace `<span>SHM</span>` with:
-   ```html
-   <img src="logo.png" alt="SHM Digital Marketing logo">
-   ```
+The HTML already points at these filenames — no code editing needed, just add
+the files with these exact names next to `index.html` (same folder, e.g. the
+root of your GitHub repo):
 
-2. **Founder photo** — put your photo next to `index.html` (e.g. `founder.jpg`),
-   then find the comment `=== FOUNDER PHOTO SLOT ===` and replace the
-   placeholder `<div class="placeholder-mark">...</div>` with:
-   ```html
-   <img src="founder.jpg" alt="Founder of SHM Digital Marketing">
-   ```
+1. **Logo** — add `logo.png` next to `index.html`. It's referenced in both
+   the header and footer already. If the file is missing, the "SHM" text
+   mark shows instead, so the site never breaks — it just falls back until
+   you add the real file.
 
-3. **Reels / motion clips** — create a `reels/` folder next to `index.html`
-   and add `reel-1.mp4`, `reel-2.mp4`, `reel-3.mp4` (short, muted, looping
-   clips work best — 9:16 vertical). The `<video>` tags in the "Work" section
-   already point to those paths, so they'll appear automatically once the
-   files exist. Add a `poster="..."` image on each `<video>` tag if you want
-   a still frame to show before playback.
+2. **Founder photo** — add `founder.jpg` next to `index.html`. Same
+   fallback behavior: shows a placeholder card until the file exists.
+
+   Using `.jpg`/`.png` but named differently? Rename your files to
+   `logo.png` and `founder.jpg` (or edit the two `src="..."` values in
+   `index.html` to match your filenames).
+
+## Highlights section
+
+The "What powers your growth" section (5 animated orbit badges) is built
+entirely in CSS/SVG — no images or video files needed, nothing to upload.
+Edit the text directly in `index.html` under `<!-- ================= HIGHLIGHTS ================= -->`
+if you want to change the titles or captions.
 
 ## Deploy to Vercel
 
