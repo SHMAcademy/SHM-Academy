@@ -91,3 +91,22 @@
     });
   }
 })();
+
+// Hero platform rotator — cycles through platform names with a fade/rise transition
+(function () {
+  var track = document.getElementById('platformRotator');
+  if (!track) return;
+  var words = ['Facebook', 'Instagram', 'TikTok'];
+  var i = 0;
+  var current = track.querySelector('.rotator-word');
+  if (!current) return;
+
+  setInterval(function () {
+    i = (i + 1) % words.length;
+    current.classList.add('out');
+    setTimeout(function () {
+      current.textContent = words[i];
+      current.classList.remove('out');
+    }, 400);
+  }, 2200);
+})();
