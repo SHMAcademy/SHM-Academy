@@ -28,10 +28,8 @@
   <div class="wrap nav">
     <div class="brand">
       <div class="brand-mark">
-        <!-- === LOGO SLOT ===
-             Replace the line below with: <img src="logo.png" alt="SHM Digital Marketing logo">
-             Keep the .brand-mark wrapper (44x44, rounded) so it stays consistent with the nav. -->
-        <span>SHM</span>
+        <img src="logo.png" alt="SHM Digital Marketing logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span style="display:none;">SHM</span>
       </div>
       <div class="brand-text">
         <b>SHM Digital Marketing</b>
@@ -212,10 +210,8 @@
   <div class="wrap">
     <div class="founder reveal">
       <div class="founder-photo">
-        <!-- === FOUNDER PHOTO SLOT ===
-             Replace the placeholder-mark div below with:
-             <img src="founder.jpg" alt="Founder of SHM Digital Marketing"> -->
-        <div class="placeholder-mark">Founder photo goes here</div>
+        <img src="founder.jpg" alt="Founder of SHM Digital Marketing" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="placeholder-mark" style="display:none;">Founder photo goes here</div>
       </div>
       <div class="founder-copy">
         <div class="k">Founder</div>
@@ -276,7 +272,10 @@
   <div class="wrap">
     <div class="footer-inner">
       <div class="brand">
-        <div class="brand-mark"><span>SHM</span></div>
+        <div class="brand-mark">
+          <img src="logo.png" alt="SHM Digital Marketing logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <span style="display:none;">SHM</span>
+        </div>
         <div class="brand-text">
           <b>SHM Digital Marketing</b>
           <small>Social Halo Management</small>
