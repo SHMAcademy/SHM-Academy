@@ -347,65 +347,51 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
 .time-card .hours span{ color:var(--text-dim); font-size:15px; display:block; margin-top:4px; font-family:var(--font-body); }
 
 /* ==========================================================================
-   Reels / motion strip
+   Highlights — animated orbit badges (echoes the hero halo motif)
    ========================================================================== */
-.reels{
-  display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;
+.orbit-grid{
+  display:grid; grid-template-columns:repeat(5, 1fr); gap:28px;
 }
-.reel{
-  position:relative; border-radius:var(--radius); overflow:hidden;
-  aspect-ratio:9/13;
-  border:1px solid var(--line);
-  background:linear-gradient(160deg, #22163a, #120e1e 70%);
-}
-.reel-video{
-  position:absolute; inset:0; z-index:2;
-  width:100%; height:100%; object-fit:cover; display:block;
-  background:#000;
-}
-
-/* Self-contained animated visuals — sit behind the video and act as the
-   fallback whenever no reel file has been uploaded yet, or it fails to load */
-.reel-visual{
-  position:absolute; inset:0; z-index:1;
+.orbit-item{ text-align:center; }
+.orbit-badge{
+  position:relative;
+  width:96px; height:96px;
+  margin:0 auto 22px;
+  border-radius:50%;
   display:flex; align-items:center; justify-content:center;
-  overflow:hidden;
 }
-.reel-visual::before{
-  content:""; position:absolute; inset:-20%;
-  background:radial-gradient(circle at 50% 40%, var(--rv-a), var(--rv-b) 45%, #0a0812 78%);
-  animation:driftglow 9s ease-in-out infinite;
+.orbit-badge::before{
+  content:"";
+  position:absolute; inset:0;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, var(--ob-a) 40%, var(--ob-b) 100%);
+  box-shadow:0 0 32px -6px var(--ob-a);
 }
-.reel-visual.rv-growth{ --rv-a:#c084fc; --rv-b:#5b2a9e; }
-.reel-visual.rv-campaign{ --rv-a:#ff6ea8; --rv-b:#7a2a5e; }
-.reel-visual.rv-verified{ --rv-a:#9b5cff; --rv-b:#2a1d5e; }
-@keyframes driftglow{ 0%,100%{ transform:scale(1) translateY(0); } 50%{ transform:scale(1.08) translateY(-2%); } }
-
-.reel-visual .rv-ring{
-  position:absolute; width:64%; aspect-ratio:1/1; border-radius:50%;
+.orbit-badge .ob-ring{
+  position:absolute; inset:-11px;
+  border-radius:50%;
   border:1px dashed rgba(255,255,255,0.35);
-  animation:spin 14s linear infinite;
+  animation:spin 13s linear infinite;
 }
-.reel-visual .rv-icon{
-  position:relative; width:30%; height:30%; min-width:44px; min-height:44px;
-  stroke:#fff; filter:drop-shadow(0 6px 18px rgba(0,0,0,0.35));
+.orbit-badge .ob-icon{
+  position:relative; z-index:2;
+  width:34px; height:34px;
+  stroke:#fff; color:#fff;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,0.35));
 }
-.reel .reel-label{
-  position:absolute; z-index:3; left:14px; bottom:14px; right:14px;
-  font-size:13.5px; font-weight:600;
-  display:flex; align-items:center; gap:8px;
+.orbit-badge.ob-1{ --ob-a:#c084fc; --ob-b:#5b2a9e; }
+.orbit-badge.ob-2{ --ob-a:#ff6ea8; --ob-b:#7a2a5e; }
+.orbit-badge.ob-3{ --ob-a:#9b5cff; --ob-b:#2a1d5e; }
+.orbit-badge.ob-4{ --ob-a:#d8b4fe; --ob-b:#6d28d9; }
+.orbit-badge.ob-5{ --ob-a:#f0abfc; --ob-b:#86198f; }
+.orbit-badge.ob-2 .ob-ring{ animation-duration:19s; animation-direction:reverse; }
+.orbit-badge.ob-4 .ob-ring{ animation-duration:16s; }
+
+.orbit-item h3{
+  font-family:var(--font-display); font-weight:700;
+  font-size:16.5px; margin-bottom:8px;
 }
-.reel .reel-label .play{
-  width:26px; height:26px; border-radius:50%;
-  background:rgba(255,255,255,0.15); backdrop-filter:blur(6px);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0;
-}
-.reel .reel-label .play svg{ width:11px; height:11px; fill:#fff; }
-.reel::after{
-  content:""; position:absolute; inset:0; z-index:2;
-  background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.75));
-  pointer-events:none;
-}
+.orbit-item p{ color:var(--text-dim); font-size:13.5px; line-height:1.5; }
 
 /* ==========================================================================
    Founder
@@ -486,7 +472,7 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
   .nav-toggle{ display:flex; align-items:center; justify-content:center; }
   .services-grid{ grid-template-columns:repeat(2, 1fr); }
   .pricing-banner{ grid-template-columns:1fr; }
-  .reels{ grid-template-columns:repeat(3, 1fr); gap:12px; }
+  .orbit-grid{ grid-template-columns:repeat(3, 1fr); row-gap:32px; }
   .founder{ grid-template-columns:1fr; text-align:center; }
   .founder-photo{ max-width:220px; margin:0 auto; }
   .founder-copy p.bio{ margin-left:auto; margin-right:auto; }
@@ -495,5 +481,5 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
 }
 @media (max-width: 600px){
   .services-grid{ grid-template-columns:1fr; }
-  .reels{ grid-template-columns:1fr; }
-   }
+  .orbit-grid{ grid-template-columns:repeat(2, 1fr); }
+}
