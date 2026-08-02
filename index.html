@@ -40,7 +40,9 @@
     <nav class="nav-links" aria-label="Primary">
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
+      <a href="#order">Order Now</a>
       <a href="#work">Highlights</a>
+      <a href="#faq">FAQ</a>
       <a href="#founder">Founder</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -190,6 +192,40 @@
   </div>
 </section>
 
+<!-- ================= PROCESS ================= -->
+<section id="process">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto; margin-right:auto;">
+      <div class="k">How it works</div>
+      <h2>From order to <span class="accent">results</span> — 4 easy steps</h2>
+      <p>Complicated form ဖြည့်စရာ မလိုပါ — Telegram တစ်ခုတည်းနဲ့ အစအဆုံး ပြီးမြောက်အောင် ဆောင်ရွက်ပေးပါတယ်။</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-step reveal">
+        <div class="step-num">01</div>
+        <h3>Choose Your Service</h3>
+        <p>Digital Marketing, Refill, Page Sell, Blue Mark, Social Service ထဲက လိုအပ်တာ ရွေးပါ။</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">02</div>
+        <h3>Message on Telegram</h3>
+        <p>t.me/SHMAcademy ကနေ Order Details ပို့ပြီး Team နဲ့ တိုက်ရိုက် ဆက်သွယ်ပါ။</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">03</div>
+        <h3>Confirm &amp; Pay</h3>
+        <p>Price &amp; Details Confirm ဖြစ်ပြီးမှသာ Payment လုပ်ဆောင်ရပါမယ်။</p>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-num">04</div>
+        <h3>We Deliver</h3>
+        <p>Service Time (9AM–11PM) အတွင်း အမြန်ဆုံး စတင်ဆောင်ရွက်ပေးပါမယ်။</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= PRICING ================= -->
 <section id="pricing">
   <div class="wrap">
@@ -200,7 +236,7 @@
 
     <div class="pricing-banner reveal">
       <div>
-        <div class="price-tag">1$ <small>≈ 6,200 Ks</small></div>
+        <div class="price-tag">1$ <small>≈ 5,900 Ks</small></div>
         <h3>အနည်းဆုံး 1$ မှစ၍ Order တင်နိုင်ပါတယ်</h3>
         <p>Likes, Followers, Views ဘယ်ဟာမဆို — Budget အနည်းငယ်နဲ့ပဲ စတင်လူတိုးလို့ရပါတယ်။ Package အကြီးအကျယ် လိုအပ်မှုမရှိပါ။</p>
         <div class="hero-actions" style="justify-content:flex-start; margin-top:24px;">
@@ -211,6 +247,128 @@
         <div class="label">Service Time</div>
         <div class="hours">9:00 AM – 11:00 PM
           <span>နေ့စဉ် ဝန်ဆောင်မှုပေးနေသော အချိန်</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ORDER NOW ================= -->
+<section id="order">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto; margin-right:auto;">
+      <div class="k">Order Now</div>
+      <h2>Build your <span class="accent">order</span> in 4 steps</h2>
+      <p>Platform ရွေးပါ → Link နဲ့ အရေအတွက်ထည့်ပါ → ငွေပေးချေပါ → Telegram ကို Confirm ပို့ပါ။</p>
+    </div>
+
+    <div class="order-wizard reveal">
+      <div class="order-progress" id="orderProgress">
+        <div class="op-dot active" data-dot="1">1</div>
+        <div class="op-line"></div>
+        <div class="op-dot" data-dot="2">2</div>
+        <div class="op-line"></div>
+        <div class="op-dot" data-dot="3">3</div>
+        <div class="op-line"></div>
+        <div class="op-dot" data-dot="4">4</div>
+        <div class="op-line"></div>
+        <div class="op-dot" data-dot="5">✓</div>
+      </div>
+
+      <!-- STEP 1 — Platform + Service -->
+      <div class="order-step active" data-step="1">
+        <h3>1. Platform &amp; Service ရွေးပါ</h3>
+        <div class="order-label">Platform</div>
+        <div class="choice-group" data-group="platform">
+          <button type="button" class="choice-btn" data-value="TikTok">TikTok</button>
+          <button type="button" class="choice-btn" data-value="Facebook Page">Facebook Page</button>
+          <button type="button" class="choice-btn" data-value="Instagram">Instagram</button>
+        </div>
+        <div class="order-label" style="margin-top:20px;">Refill လုပ်မည့်အရာ</div>
+        <div class="choice-group" data-group="service">
+          <button type="button" class="choice-btn" data-value="Likes">Likes</button>
+          <button type="button" class="choice-btn" data-value="Followers">Followers</button>
+          <button type="button" class="choice-btn" data-value="Views">Views</button>
+          <button type="button" class="choice-btn" data-value="Post Reactions">Post Reactions</button>
+        </div>
+        <p class="order-error" id="err1"></p>
+        <div class="order-nav">
+          <span></span>
+          <button type="button" class="btn btn-primary" data-goto="2">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 — Link + Quantity + Live price -->
+      <div class="order-step" data-step="2">
+        <h3>2. Link &amp; Refill အရေအတွက်</h3>
+        <label class="order-label" for="orderLink">Refill လုပ်မည့် Link</label>
+        <input type="text" id="orderLink" class="order-input" placeholder="https://facebook.com/yourpage">
+        <label class="order-label" for="orderQty">Refill အရေအတွက် (Minimum 1,000)</label>
+        <input type="number" id="orderQty" class="order-input" min="1000" step="500" value="1000">
+        <div class="order-price-box">
+          <span>ခန့်မှန်းကျသင့်ငွေ</span>
+          <span class="order-price" id="orderPrice">6,200 Ks</span>
+        </div>
+        <p class="order-hint">1,000 ဖို့ 6,200 Ks နှုန်းနဲ့ တွက်ချက်ထားပါတယ် — ပမာဏတိုးရင် ဈေးနှုန်းလည်း အလိုက်သင့် တိုးသွားပါမယ်။</p>
+        <p class="order-error" id="err2"></p>
+        <div class="order-nav">
+          <button type="button" class="btn btn-ghost" data-goto="1">Back</button>
+          <button type="button" class="btn btn-primary" data-goto="3">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 — Payment method -->
+      <div class="order-step" data-step="3">
+        <h3>3. ငွေပေးချေမှု နည်းလမ်း ရွေးပါ</h3>
+        <div class="choice-group" data-group="payment">
+          <button type="button" class="choice-btn" data-value="Wave Money">Wave Money</button>
+          <button type="button" class="choice-btn" data-value="KBZPay">KBZPay</button>
+        </div>
+
+        <div class="payment-details" id="pd-wave" hidden>
+          <div class="pd-row"><span class="pd-label">Wave Money Number</span><span class="pd-value">09663346755</span><button type="button" class="pd-copy" data-copy="09663346755">Copy</button></div>
+          <div class="pd-row"><span class="pd-label">Name</span><span class="pd-value">U Shine Htet Myo</span></div>
+          <div class="pd-note">Notes တွင် <strong>&quot;Payment&quot;</strong> လို့သာ ရေးပေးပါ။</div>
+        </div>
+        <div class="payment-details" id="pd-kbz" hidden>
+          <div class="pd-row"><span class="pd-label">KBZPay Number</span><span class="pd-value">09663346755</span><button type="button" class="pd-copy" data-copy="09663346755">Copy</button></div>
+          <div class="pd-row"><span class="pd-label">Name</span><span class="pd-value">U Shine Htet Myo</span></div>
+          <div class="pd-note">Notes တွင် <strong>&quot;Payment&quot;</strong> လို့သာ ရေးပေးပါ။</div>
+        </div>
+
+        <p class="order-error" id="err3"></p>
+        <div class="order-nav">
+          <button type="button" class="btn btn-ghost" data-goto="2">Back</button>
+          <button type="button" class="btn btn-primary" data-goto="4">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Transaction confirmation -->
+      <div class="order-step" data-step="4">
+        <h3>4. ငွေလွဲပြီးရင် အောက်က အချက်တွေ ဖြည့်ပါ</h3>
+        <label class="order-label" for="orderTxn">ငွေလွဲပြေစာ နောက်ဆုံး ID နံပါတ် ၅ လုံး</label>
+        <input type="text" id="orderTxn" class="order-input" maxlength="5" placeholder="12345">
+        <label class="order-label" for="orderAccName">ငွေလွဲထားသည့် အကောင့်နာမည်</label>
+        <input type="text" id="orderAccName" class="order-input" placeholder="Wave/KBZ Account Name">
+        <p class="order-error" id="err4"></p>
+        <div class="order-nav">
+          <button type="button" class="btn btn-ghost" data-goto="3">Back</button>
+          <button type="button" class="btn btn-primary" id="orderSubmit">Submit Order</button>
+        </div>
+      </div>
+
+      <!-- STEP 5 — Final Telegram handoff -->
+      <div class="order-step" data-step="5">
+        <h3>✅ နောက်ဆုံးအရေးကြီးသည့်အပိုင်း</h3>
+        <p class="order-warning">
+          ဒီ Website ကနေ Submit နှိပ်ရုံနဲ့ Order မပြီးမြောက်သေးပါ — အောက်က Order Summary ကို
+          <strong>Copy</strong> လုပ်ပြီး Telegram ကနေ <strong>t.me/SHMAcademy</strong> ကို တိုက်ရိုက်
+          Message ပို့ပေးမှသာ Order စတင်ဆောင်ရွက်ပေးပါမယ်။
+        </p>
+        <pre class="order-summary" id="orderSummary"></pre>
+        <div class="order-nav" style="justify-content:center; gap:14px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-ghost" id="orderCopyBtn">Copy Summary</button>
+          <a class="btn btn-primary" href="https://t.me/SHMAcademy" target="_blank" rel="noopener">Send on Telegram</a>
         </div>
       </div>
     </div>
@@ -270,6 +428,78 @@
         </div>
         <h3>Trusted Growth Partner</h3>
         <p>Transparent reporting, no guesswork, no hidden fees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto; margin-right:auto;">
+      <div class="k">Got questions?</div>
+      <h2>Frequently Asked <span class="accent">Questions</span></h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>SHM Digital Marketing ကနေ ဝန်ဆောင်မှု ဘယ်လိုစတင်ရမလဲ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Telegram (t.me/SHMAcademy) ကနေ message ပို့ပြီး လိုချင်တဲ့ ဝန်ဆောင်မှုကို ပြောပြရုံပါပဲ — Team က Price and Details ကို ချက်ချင်း ပြန်ပြောပေးပါမယ်။</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>Minimum Order ဘယ်လောက်ကနေ စလို့ရလဲ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>1$ ကနေပဲ စတင်ပြီး Order တင်နိုင်ပါတယ် — Budget အနည်းငယ်နဲ့ပဲ စတင်လူတိုးလို့ရပါတယ်။</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>ဝန်ဆောင်မှု ပေးတဲ့ အချိန်က ဘယ်အချိန်လဲ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>နေ့စဉ် နံနက် 9 နာရီကနေ ည 11 နာရီအတွင်း ဝန်ဆောင်မှု ပေးနေပါတယ်။</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>ဘယ် Social Media Platform တွေအတွက် ဝန်ဆောင်မှု ပေးလဲ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Facebook, Instagram, TikTok Page/Account တွေအတွက် ဝန်ဆောင်မှု ပေးနေပါတယ်။</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>Payment ဘယ်လိုလုပ်ရမလဲ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Telegram ကနေ Order Confirm ဖြစ်ပြီးရင် Payment Details ကို တိုက်ရိုက် ပြောပြပေးပါမယ်။</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" aria-expanded="false">
+          <span>Order တင်ပြီးရင် ဘယ်လောက်ကြာကြာ စောင့်ရမလဲ?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p>Order Confirm ပြီးတာနဲ့ Service Time (9AM–11PM) အတွင်း အမြန်ဆုံး စတင်ဆောင်ရွက်ပေးပါတယ်။</p>
+        </div>
       </div>
     </div>
   </div>
