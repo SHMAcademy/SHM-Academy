@@ -156,6 +156,8 @@ a:focus-visible, button:focus-visible{
   padding-bottom:clamp(56px, 8vw, 96px);
   text-align:center;
 }
+.hero-grid{ display:block; }
+.hero-copy{ max-width:720px; margin:0 auto; }
 .eyebrow{
   display:inline-flex; align-items:center; gap:8px;
   font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase;
@@ -171,7 +173,7 @@ a:focus-visible, button:focus-visible{
 .hero h1{
   font-family:var(--font-display);
   font-weight:700;
-  font-size:clamp(38px, 7vw, 78px);
+  font-size:clamp(38px, 6vw, 68px);
   line-height:1.05;
   letter-spacing:-0.02em;
 }
@@ -233,32 +235,67 @@ a:focus-visible, button:focus-visible{
 }
 .btn-ghost:hover{ border-color:rgba(192,132,252,0.5); background:rgba(155,92,255,0.08); }
 
-/* Hero visual — orbiting halo device, built purely in CSS/SVG (no external images) */
-.hero-visual{
+/* Hero art — layered liquid-swirl visual, built purely in CSS (no external images) */
+.hero-art{
+  display:flex; align-items:center; justify-content:center;
+  margin-top:56px;
+}
+.swirl-frame{
   position:relative;
   width:min(420px, 78vw);
   height:min(420px, 78vw);
-  margin:56px auto 0;
+  border-radius:32px;
+  overflow:hidden;
+  background:radial-gradient(120% 120% at 20% 15%, #241a3d, #0f0a1c 70%);
+  border:1px solid rgba(192,132,252,0.25);
+  box-shadow:0 30px 80px -30px rgba(91,42,158,0.6);
 }
-.hero-visual .core{
-  position:absolute; inset:34%;
+.swirl-blob{
+  position:absolute; border-radius:50%; filter:blur(38px);
+  animation:swirl-drift 14s ease-in-out infinite;
+}
+.swirl-blob.b1{ width:70%; height:70%; top:-15%; left:-10%; background:radial-gradient(circle, var(--halo-1), transparent 70%); opacity:0.85; }
+.swirl-blob.b2{ width:60%; height:60%; bottom:-18%; right:-12%; background:radial-gradient(circle, var(--halo-3), transparent 70%); opacity:0.75; animation-delay:2.4s; animation-duration:17s; }
+.swirl-blob.b3{ width:46%; height:46%; top:32%; left:28%; background:radial-gradient(circle, var(--halo-2), transparent 70%); opacity:0.7; animation-delay:1s; animation-duration:11s; }
+@keyframes swirl-drift{
+  0%, 100%{ transform:translate(0,0) scale(1); }
+  50%{ transform:translate(6%, -6%) scale(1.12); }
+}
+.swirl-ring{
+  position:absolute; inset:14%;
   border-radius:50%;
-  background:radial-gradient(circle at 35% 30%, #fff, var(--halo-2) 35%, var(--halo-1) 70%, #3a1d78 100%);
-  box-shadow:0 0 80px 10px rgba(155,92,255,0.55);
+  border:1px solid rgba(255,255,255,0.18);
+  animation:spin 24s linear infinite;
 }
-.hero-visual .orbit{
+.swirl-ring::before{
+  content:"";
+  position:absolute; inset:-1px; border-radius:50%; padding:1px;
+  background:conic-gradient(from 0deg, transparent, rgba(255,255,255,0.5), transparent 30%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+}
+.swirl-core{
+  position:absolute; inset:38%; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, var(--halo-2) 40%, var(--halo-1) 75%, #3a1d78 100%);
+  box-shadow:0 0 70px 12px rgba(155,92,255,0.55);
+}
+.swirl-shine{
   position:absolute; inset:0;
-  border-radius:50%;
-  border:1px dashed rgba(192,132,252,0.35);
-  animation:spin 18s linear infinite;
+  background:linear-gradient(115deg, rgba(255,255,255,0.08) 0%, transparent 30%);
+  pointer-events:none;
 }
-.hero-visual .orbit.o2{ inset:12%; animation-duration:26s; animation-direction:reverse; border-style:solid; border-color:rgba(255,110,168,0.25); }
-.hero-visual .sat{
-  position:absolute; width:14px; height:14px; border-radius:50%;
-  background:var(--halo-3); top:-7px; left:calc(50% - 7px);
-  box-shadow:0 0 16px 4px rgba(255,110,168,0.7);
+
+@media (min-width: 960px){
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center; gap:48px;
+    text-align:left;
+  }
+  .hero-copy{ margin:0; max-width:none; }
+  .hero .eyebrow{ margin-left:0; }
+  .hero p.lede{ margin-left:0; margin-right:0; }
+  .hero-actions{ justify-content:flex-start; }
+  .hero-art{ margin-top:0; }
 }
-.hero-visual .orbit.o2 .sat{ background:var(--halo-2); box-shadow:0 0 16px 4px rgba(192,132,252,0.7); }
 
 /* ==========================================================================
    Marquee ticker — full-bleed scrolling strip
