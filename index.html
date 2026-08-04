@@ -79,12 +79,29 @@
     <!-- Eye-catching swirl visual, pure CSS/SVG — no external image dependency -->
     <div class="hero-art" aria-hidden="true">
       <div class="swirl-frame">
-        <div class="swirl-blob b1"></div>
-        <div class="swirl-blob b2"></div>
-        <div class="swirl-blob b3"></div>
+        <div class="swirl-spin">
+          <div class="swirl-blob b1"></div>
+          <div class="swirl-blob b2"></div>
+          <div class="swirl-blob b3"></div>
+        </div>
         <div class="swirl-ring"></div>
         <div class="swirl-core"></div>
         <div class="swirl-shine"></div>
+      </div>
+
+      <!-- Rotating ad-style brand seal, overlapping the frame corner -->
+      <div class="brand-seal">
+        <div class="brand-seal-inner">
+          <svg viewBox="0 0 120 120" width="72" height="72">
+            <defs>
+              <path id="sealPath" d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/>
+            </defs>
+            <text font-size="9.5" letter-spacing="2" font-family="Sora, sans-serif" font-weight="700">
+              <textPath href="#sealPath" startOffset="0%">★ SHM DIGITAL MARKETING ★ SOCIAL HALO MANAGEMENT</textPath>
+            </text>
+            <circle cx="60" cy="60" r="15" fill="none" stroke="rgba(192,132,252,0.5)" stroke-width="1"/>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -242,6 +259,7 @@
     </div>
 
     <div class="pricing-banner reveal">
+      <div class="ribbon-badge"><span>No Minimum Package</span></div>
       <div>
         <div class="price-tag">1$ <small>≈ 6,200 Ks</small></div>
         <h3>အနည်းဆုံး 1$ မှစ၍ Order တင်နိုင်ပါတယ်</h3>
