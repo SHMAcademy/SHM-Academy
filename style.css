@@ -502,6 +502,59 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
 .process-step p{ color:var(--text-dim); font-size:13.5px; line-height:1.5; }
 
 /* ==========================================================================
+   Integrations hub
+   ========================================================================== */
+.int-orb{
+  position:relative; width:52px; height:52px; margin:0 auto 18px;
+}
+.int-orb-ring{
+  position:absolute; inset:0; border-radius:50%;
+  border:1px dashed rgba(192,132,252,0.4);
+  animation:spin 10s linear infinite;
+}
+.int-orb-core{
+  position:absolute; inset:12px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, var(--halo-2) 45%, var(--halo-1) 100%);
+  box-shadow:0 0 24px 4px rgba(155,92,255,0.6);
+}
+.hub-row{
+  position:relative;
+  display:flex; align-items:center; justify-content:center; gap:0;
+  max-width:720px; margin:0 auto;
+}
+.hub-row::before{
+  content:"";
+  position:absolute; top:50%; left:8%; right:8%; height:1px;
+  background:repeating-linear-gradient(90deg, rgba(192,132,252,0.4) 0 8px, transparent 8px 18px);
+  z-index:0;
+}
+.hub-node{
+  position:relative; z-index:1; flex:1;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+  background:var(--bg);
+  padding:8px;
+}
+.hub-node svg{
+  width:30px; height:30px; padding:12px; box-sizing:content-box;
+  border-radius:14px;
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+  border:1px solid var(--line);
+  stroke:var(--halo-2);
+  transition:border-color .25s ease, transform .25s ease;
+}
+.hub-node:hover svg{ transform:translateY(-4px); border-color:rgba(192,132,252,0.5); }
+.hub-node span{ font-size:12.5px; color:var(--text-dim); font-weight:600; }
+.hub-center{
+  position:relative; z-index:1; flex:0 0 auto;
+  width:72px; height:72px; margin:0 18px;
+  border-radius:20px;
+  background:linear-gradient(145deg, var(--halo-1), var(--halo-3));
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 40px 6px rgba(155,92,255,0.55);
+}
+.hub-center svg{ width:30px; height:30px; stroke:#fff; }
+
+/* ==========================================================================
    Pricing / offer banner
    ========================================================================== */
 .pricing-banner{
@@ -641,6 +694,71 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
   background:rgba(0,0,0,0.35); border:1px solid var(--line); border-radius:10px;
   padding:18px; font-family:var(--font-mono); font-size:13px; color:var(--text-dim);
   white-space:pre-wrap; word-break:break-word; line-height:1.7;
+}
+
+/* ==========================================================================
+   Feature mockup cards
+   ========================================================================== */
+.feature-grid{
+  display:grid; grid-template-columns:repeat(3, 1fr); gap:20px;
+}
+.feature-card{
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+  border:1px solid var(--line); border-radius:var(--radius);
+  padding:22px;
+  transition:transform .25s ease, border-color .25s ease;
+}
+.feature-card:hover{ transform:translateY(-5px); border-color:rgba(192,132,252,0.4); }
+.fc-mock{
+  border-radius:14px; padding:20px;
+  background:radial-gradient(120% 140% at 100% 0%, rgba(155,92,255,0.28), transparent 60%), #120e1e;
+  border:1px solid var(--line);
+  margin-bottom:18px;
+  min-height:110px;
+}
+.feature-card h3{ font-family:var(--font-display); font-size:16.5px; margin-bottom:8px; }
+.feature-card p{ color:var(--text-dim); font-size:13.5px; line-height:1.5; }
+
+/* Mockup 1 — guided steps */
+.fc-mock-steps{ display:flex; align-items:center; justify-content:center; gap:0; }
+.fm-dot{ width:14px; height:14px; border-radius:50%; background:rgba(255,255,255,0.15); border:1px solid var(--line); flex-shrink:0; }
+.fm-dot.done{ background:linear-gradient(135deg, var(--halo-1), var(--halo-3)); border-color:transparent; }
+.fm-dot.active{ background:var(--bg); border:2px solid var(--halo-2); box-shadow:0 0 0 4px rgba(155,92,255,0.2); }
+.fm-line{ width:26px; height:2px; background:var(--line); }
+.fm-line.done{ background:linear-gradient(90deg, var(--halo-1), var(--halo-3)); }
+
+/* Mockup 2 — chat bubbles */
+.fc-mock-chat{ display:flex; flex-direction:column; gap:8px; }
+.fm-bubble{
+  max-width:78%; padding:8px 12px; border-radius:12px;
+  font-size:11.5px; color:var(--text-dim);
+  background:rgba(255,255,255,0.05); border:1px solid var(--line);
+}
+.fm-bubble.left{ align-self:flex-start; border-bottom-left-radius:3px; }
+.fm-bubble.right{
+  align-self:flex-end; border-bottom-right-radius:3px;
+  background:linear-gradient(120deg, var(--halo-1), var(--halo-3)); color:#fff; border-color:transparent;
+}
+.fm-bubble.short{ max-width:55%; }
+
+/* Mockup 3 — price ticker */
+.fc-mock-price{ display:flex; flex-direction:column; gap:8px; position:relative; }
+.fm-price-row{
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--font-mono); font-size:12px; color:var(--text-faint);
+  padding:4px 0;
+}
+.fm-price-row b{ color:var(--text-dim); font-weight:600; }
+.fm-price-row.active{ color:var(--text); }
+.fm-price-row.active b{
+  background:linear-gradient(120deg, var(--halo-1), var(--halo-3));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-size:14px;
+}
+.fm-price-bar{
+  height:3px; border-radius:2px; margin-top:4px;
+  background:linear-gradient(90deg, var(--halo-1), var(--halo-3));
+  width:70%;
 }
 
 /* ==========================================================================
@@ -943,9 +1061,17 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
   .contact-grid{ grid-template-columns:1fr; }
   .stats-strip{ grid-template-columns:repeat(2, 1fr); }
   .tips-grid{ grid-template-columns:1fr; }
+  .hub-node svg{ width:22px; height:22px; padding:9px; }
+  .hub-center{ width:60px; height:60px; margin:0 10px; }
+  .hub-center svg{ width:24px; height:24px; }
+  .feature-grid{ grid-template-columns:repeat(2, 1fr); }
 }
 @media (max-width: 600px){
   .services-grid{ grid-template-columns:1fr; }
   .orbit-grid{ grid-template-columns:repeat(2, 1fr); }
   .process-grid{ grid-template-columns:1fr; }
+  .hub-row{ flex-wrap:wrap; gap:16px 0; }
+  .hub-row::before{ display:none; }
+  .hub-center{ order:-1; flex-basis:100%; margin:0 auto 8px; }
+  .feature-grid{ grid-template-columns:1fr; }
 }
