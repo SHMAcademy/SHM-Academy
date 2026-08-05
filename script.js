@@ -1,3 +1,7 @@
+// Telegram Bot Config
+const TELEGRAM_BOT_TOKEN = "8907164237:AAFSKHkRhVBxrW1Fw-zKTyFKolWcJzLoWqY";
+const TELEGRAM_CHAT_ID = "7095929240";
+
 // Scroll-reveal for .reveal elements — staggered fade/rise on entry
 (function () {
   var items = document.querySelectorAll('.reveal');
@@ -145,29 +149,56 @@
   });
 })();
 
-// Order wizard — platform/service selection, live price calc, payment details,
-// validation, and a final Telegram-ready summary (site has no backend, so the
-// actual order still has to be sent to Telegram by the customer)
+// Order wizard — handles AI Plans & Social Media services with dynamic price calculation,
+// payment methods (Wave Money / KBZPay), Telegram links, and Telegram Bot Notification.
 (function () {
   var wizard = document.querySelector('.order-wizard');
   if (!wizard) return;
 
   var PRICE_PER_1000 = 6200;
-  var state = { platform: '', service: '', link: '', qty: 1000, payment: '', txn: '', accName: '' };
-  var currentStep = 1;
+  var state = {
+    category: 'AI Plans',
+    aiPlan: 'Canva Pro',
+    unitPrice: 20000,
+    platform: 'Facebook Page',
+    service: 'Likes',
+    email: '',
+    link: '',
+    qty: 1,
+    payment: 'Wave Money',
+    txn: '',
+    accName: '',
+    totalPrice: 20000
+  };
 
+  var currentStep = 1;
   var steps = wizard.querySelectorAll('.order-step');
   var dots = wizard.querySelectorAll('.op-dot');
 
+  var aiPlanSection = document.getElementById('aiPlanSection');
+  var socialSection = document.getElementById('socialSection');
+  var aiPlanSelect = document.getElementById('aiPlanSelect');
+  var step2AiInputs = document.getElementById('step2-ai-inputs');
+  var step2SocialInputs = document.getElementById('step2-social-inputs');
+  var cardQty = document.getElementById('cardQty');
+  var orderQty = document.getElementById('orderQty');
+  var priceEl = document.getElementById('orderPrice');
+
   function formatKs(n) {
-    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' Ks';
+    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' MMK';
   }
 
   function updatePrice() {
-    var qty = parseInt(state.qty, 10) || 0;
-    var price = (qty / 1000) * PRICE_PER_1000;
-    var priceEl = document.getElementById('orderPrice');
-    if (priceEl) priceEl.textContent = formatKs(price);
+    if (state.category === 'AI Plans') {
+      var q = Math.max(1, parseInt(cardQty ? cardQty.value : 1, 10) || 1);
+      state.qty = q;
+      state.totalPrice = state.unitPrice * q;
+    } else {
+      var q = Math.max(1000, parseInt(orderQty ? orderQty.value : 1000, 10) || 1000);
+      state.qty = q;
+      state.totalPrice = Math.round((q / 1000) * PRICE_PER_1000);
+    }
+    if (priceEl) priceEl.textContent = formatKs(state.totalPrice);
   }
 
   function goToStep(n) {
@@ -187,9 +218,46 @@
     if (el) el.textContent = msg || '';
   }
 
-  // Choice buttons (platform / service / payment)
+  // Handle Main Category Toggle (AI Plans vs Social Services)
+  var categoryBtns = wizard.querySelectorAll('[data-group="mainCategory"] .choice-btn');
+  if (categoryBtns.length) {
+    categoryBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        categoryBtns.forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        state.category = btn.getAttribute('data-value');
+
+        if (state.category === 'AI Plans') {
+          if (aiPlanSection) aiPlanSection.style.display = 'block';
+          if (socialSection) socialSection.style.display = 'none';
+          if (step2AiInputs) step2AiInputs.style.display = 'block';
+          if (step2SocialInputs) step2SocialInputs.style.display = 'none';
+        } else {
+          if (aiPlanSection) aiPlanSection.style.display = 'none';
+          if (socialSection) socialSection.style.display = 'block';
+          if (step2AiInputs) step2AiInputs.style.display = 'none';
+          if (step2SocialInputs) step2SocialInputs.style.display = 'block';
+        }
+        updatePrice();
+      });
+    });
+  }
+
+  // Handle AI Dropdown Change
+  if (aiPlanSelect) {
+    aiPlanSelect.addEventListener('change', function (e) {
+      var selected = e.target.options[e.target.selectedIndex];
+      state.aiPlan = selected.value;
+      state.unitPrice = parseInt(selected.getAttribute('data-price'), 10) || 20000;
+      updatePrice();
+    });
+  }
+
+  // Other Choice buttons (Platform, Service, Payment)
   wizard.querySelectorAll('.choice-group').forEach(function (group) {
     var groupName = group.getAttribute('data-group');
+    if (groupName === 'mainCategory') return;
+
     group.querySelectorAll('.choice-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         group.querySelectorAll('.choice-btn').forEach(function (b) { b.classList.remove('selected'); });
@@ -206,14 +274,9 @@
     });
   });
 
-  // Quantity live price
-  var qtyInput = document.getElementById('orderQty');
-  if (qtyInput) {
-    qtyInput.addEventListener('input', function () {
-      state.qty = qtyInput.value;
-      updatePrice();
-    });
-  }
+  // Inputs live price tracking
+  if (cardQty) cardQty.addEventListener('input', updatePrice);
+  if (orderQty) orderQty.addEventListener('input', updatePrice);
 
   // Copy payment number buttons
   wizard.querySelectorAll('.pd-copy').forEach(function (btn) {
@@ -229,30 +292,34 @@
     });
   });
 
-  // Next / Back navigation with per-step validation
+  // Navigation logic
   wizard.querySelectorAll('[data-goto]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var target = parseInt(btn.getAttribute('data-goto'), 10);
 
       if (target > currentStep) {
         if (currentStep === 1) {
-          if (!state.platform || !state.service) {
-            setError('err1', 'Platform နဲ့ Service ကို ရွေးပါ။');
-            return;
-          }
           setError('err1', '');
         }
         if (currentStep === 2) {
-          var linkVal = (document.getElementById('orderLink') || {}).value || '';
-          state.link = linkVal.trim();
-          var qtyVal = parseInt(state.qty, 10) || 0;
-          if (!state.link) {
-            setError('err2', 'Refill Link ထည့်ပါ။');
-            return;
-          }
-          if (qtyVal < 1000) {
-            setError('err2', 'Minimum Refill အရေအတွက်က 1,000 ဖြစ်ပါတယ်။');
-            return;
+          if (state.category === 'AI Plans') {
+            var emailVal = (document.getElementById('accountEmail') || {}).value || '';
+            state.email = emailVal.trim();
+            if (!state.email) {
+              setError('err2', 'Email သို့မဟုတ် Telegram Username ဖြည့်ပေးပါ။');
+              return;
+            }
+          } else {
+            var linkVal = (document.getElementById('orderLink') || {}).value || '';
+            state.link = linkVal.trim();
+            if (!state.link) {
+              setError('err2', 'Refill Link ထည့်ပါ။');
+              return;
+            }
+            if (state.qty < 1000) {
+              setError('err2', 'Minimum Refill အရေအတွက်က 1,000 ဖြစ်ပါတယ်။');
+              return;
+            }
           }
           setError('err2', '');
         }
@@ -269,7 +336,7 @@
     });
   });
 
-  // Submit — validate step 4, build summary, jump to step 5
+  // Submit Order Handle
   var submitBtn = document.getElementById('orderSubmit');
   if (submitBtn) {
     submitBtn.addEventListener('click', function () {
@@ -288,21 +355,49 @@
       }
       setError('err4', '');
 
-      var qty = parseInt(state.qty, 10) || 0;
-      var price = formatKs((qty / 1000) * PRICE_PER_1000);
-      var summary =
-        '🛒 New Order — SHM Digital Marketing\n\n' +
-        'Platform: ' + state.platform + '\n' +
-        'Service: ' + state.service + '\n' +
-        'Link: ' + state.link + '\n' +
-        'Quantity: ' + qty.toLocaleString() + '\n' +
-        'Total: ' + price + '\n\n' +
-        'Payment Method: ' + state.payment + '\n' +
-        'Transaction Last 5 Digits: ' + state.txn + '\n' +
-        'Transferred From (Account Name): ' + state.accName;
+      // Build Order Summary
+      var summary = '📦 NEW ORDER — SHM DIGITAL MARKETING 📦\n';
+      summary += '-------------------------\n';
+      summary += 'Category: ' + state.category + '\n';
+      if (state.category === 'AI Plans') {
+        summary += 'Plan Name: ' + state.aiPlan + '\n';
+        summary += 'Target Info: ' + state.email + '\n';
+        summary += 'Quantity: ' + state.qty + '\n';
+      } else {
+        summary += 'Platform: ' + state.platform + '\n';
+        summary += 'Service: ' + state.service + '\n';
+        summary += 'Link: ' + state.link + '\n';
+        summary += 'Quantity: ' + state.qty.toLocaleString() + '\n';
+      }
+      summary += 'Total Price: ' + formatKs(state.totalPrice) + '\n';
+      summary += 'Payment Method: ' + state.payment + '\n';
+      summary += 'Txn Last 5 Digits: ' + state.txn + '\n';
+      summary += 'Account Name: ' + state.accName + '\n';
+      summary += '-------------------------\n';
+      summary += 'Note: /payerror တွေ့ရှိပါက t.me/SHMAcademy သို့ ဆက်သွယ်ပါ။';
 
       var summaryEl = document.getElementById('orderSummary');
       if (summaryEl) summaryEl.textContent = summary;
+
+      // Update direct link button to send text to Telegram
+      var telegramLink = document.getElementById('telegramSendLink');
+      if (telegramLink) {
+        telegramLink.href = 'https://t.me/SHMAcademy?text=' + encodeURIComponent(summary);
+      }
+
+      // Direct Telegram Bot Notification Call
+      if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+        fetch('https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: summary
+          })
+        }).catch(function (err) {
+          console.log('Bot sending error:', err);
+        });
+      }
 
       goToStep(5);
     });
