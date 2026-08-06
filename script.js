@@ -324,3 +324,297 @@
 
   updatePrice();
 })();
+
+// AI Pro & Premium — product catalog, cart, and checkout
+(function () {
+  var grid = document.getElementById('prodGrid');
+  if (!grid) return;
+
+  var PRODUCTS = [
+    { id: 'canva',        name: 'Canva Pro',                        price: 20000 },
+    { id: 'canva-prem',   name: 'Canva Pro (Premium)',               price: 35000 },
+    { id: 'perplexity',   name: 'Perplexity Ai Pro Plan',            price: 23000 },
+    { id: 'gemini-pro',   name: 'Gemini Ai Pro',                     price: 23000 },
+    { id: 'gemini-plan',  name: 'Gemini Ai Pro Plan',                price: 28000 },
+    { id: 'chatgpt-ai',   name: 'Chat Gpt Ai',                       price: 28000 },
+    { id: 'chatgpt-inv',  name: 'Chat Gpt Invite (Premium)',         price: 38000 },
+    { id: 'chatgpt-shr',  name: 'Chat Gpt Shared (Premium)',         price: 35000 },
+    { id: 'gemini-google',name: 'Gemini + Google Ai Pro',            price: 28000 },
+    { id: 'gemini-plan2', name: 'Gemini Ai Pro plan',                price: 68000 }
+  ];
+
+  var cart = {}; // { productId: qty }
+
+  function formatMMK(n) {
+    return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + ' MMK';
+  }
+  function findProduct(id) {
+    for (var i = 0; i < PRODUCTS.length; i++) if (PRODUCTS[i].id === id) return PRODUCTS[i];
+    return null;
+  }
+  function cartCount() {
+    var n = 0;
+    for (var id in cart) n += cart[id];
+    return n;
+  }
+  function cartTotal() {
+    var sum = 0;
+    for (var id in cart) {
+      var p = findProduct(id);
+      if (p) sum += p.price * cart[id];
+    }
+    return sum;
+  }
+
+  // Render product grid
+  var cardsHtml = '';
+  PRODUCTS.forEach(function (p) {
+    cardsHtml +=
+      '<div class="prod-card">' +
+        '<span class="prod-badge">AI Models</span>' +
+        '<h3>' + p.name + '</h3>' +
+        '<div class="prod-price">' + formatMMK(p.price) + '</div>' +
+        '<div class="prod-actions">' +
+          '<button type="button" class="prod-add" data-add="' + p.id + '">Add to Cart</button>' +
+          '<button type="button" class="prod-order" data-order="' + p.id + '">Order Now</button>' +
+        '</div>' +
+      '</div>';
+  });
+  grid.innerHTML = cardsHtml;
+
+  var cartFab = document.getElementById('cartFab');
+  var cartCountEl = document.getElementById('cartCount');
+  var cartOverlay = document.getElementById('cartOverlay');
+  var cartItemsEl = document.getElementById('cartItems');
+  var cartTotalEl = document.getElementById('cartTotal');
+  var checkoutOverlay = document.getElementById('checkoutOverlay');
+
+  function renderCartBadge() {
+    if (cartCountEl) cartCountEl.textContent = cartCount();
+  }
+
+  function renderCartDrawer() {
+    if (!cartItemsEl) return;
+    var ids = Object.keys(cart);
+    if (!ids.length) {
+      cartItemsEl.innerHTML = '<p class="cart-empty">Cart ထဲမှာ ဘာမှ မရှိသေးပါ</p>';
+    } else {
+      var html = '';
+      ids.forEach(function (id) {
+        var p = findProduct(id);
+        if (!p) return;
+        var qty = cart[id];
+        html +=
+          '<div class="cart-item">' +
+            '<div class="cart-item-info"><div class="name">' + p.name + '</div><div class="unit">' + formatMMK(p.price) + ' / unit</div></div>' +
+            '<div class="cart-qty">' +
+              '<button type="button" data-qty-down="' + id + '">−</button>' +
+              '<span>' + qty + '</span>' +
+              '<button type="button" data-qty-up="' + id + '">+</button>' +
+            '</div>' +
+            '<span class="cart-item-remove" data-remove="' + id + '">Remove</span>' +
+          '</div>';
+      });
+      cartItemsEl.innerHTML = html;
+    }
+    if (cartTotalEl) cartTotalEl.textContent = formatMMK(cartTotal());
+  }
+
+  function addToCart(id, qty) {
+    cart[id] = (cart[id] || 0) + (qty || 1);
+    renderCartBadge();
+    renderCartDrawer();
+  }
+
+  grid.addEventListener('click', function (e) {
+    var addBtn = e.target.closest('[data-add]');
+    var orderBtn = e.target.closest('[data-order]');
+    if (addBtn) {
+      addToCart(addBtn.getAttribute('data-add'), 1);
+      addBtn.classList.add('in-cart');
+      var original = addBtn.textContent;
+      addBtn.textContent = 'Added ✓';
+      setTimeout(function () { addBtn.textContent = original; addBtn.classList.remove('in-cart'); }, 1200);
+    }
+    if (orderBtn) {
+      addToCart(orderBtn.getAttribute('data-order'), 1);
+      openCheckout();
+    }
+  });
+
+  if (cartItemsEl) {
+    cartItemsEl.addEventListener('click', function (e) {
+      var up = e.target.closest('[data-qty-up]');
+      var down = e.target.closest('[data-qty-down]');
+      var rm = e.target.closest('[data-remove]');
+      if (up) { cart[up.getAttribute('data-qty-up')]++; }
+      if (down) {
+        var id = down.getAttribute('data-qty-down');
+        cart[id]--;
+        if (cart[id] <= 0) delete cart[id];
+      }
+      if (rm) { delete cart[rm.getAttribute('data-remove')]; }
+      renderCartBadge();
+      renderCartDrawer();
+    });
+  }
+
+  function openCart() { renderCartDrawer(); if (cartOverlay) cartOverlay.classList.add('open'); }
+  function closeCart() { if (cartOverlay) cartOverlay.classList.remove('open'); }
+
+  if (cartFab) cartFab.addEventListener('click', openCart);
+  var cartCloseBtn = document.getElementById('cartCloseBtn');
+  if (cartCloseBtn) cartCloseBtn.addEventListener('click', closeCart);
+  if (cartOverlay) cartOverlay.addEventListener('click', function (e) { if (e.target === cartOverlay) closeCart(); });
+
+  // ---- Checkout modal ----
+  var cState = { name: '', phone: '', telegram: '', notes: '', payment: '', txn: '', accName: '' };
+  var cStep = 1;
+  var cSteps = checkoutOverlay ? checkoutOverlay.querySelectorAll('.order-step') : [];
+  var cDots = document.getElementById('checkoutProgress') ? document.getElementById('checkoutProgress').querySelectorAll('.op-dot') : [];
+
+  function goToCStep(n) {
+    cSteps.forEach(function (s) {
+      s.classList.toggle('active', parseInt(s.getAttribute('data-cstep'), 10) === n);
+    });
+    cDots.forEach(function (d) {
+      var dn = parseInt(d.getAttribute('data-cdot'), 10);
+      d.classList.toggle('active', dn === n);
+      d.classList.toggle('done', dn < n);
+    });
+    cStep = n;
+  }
+  function setCError(id, msg) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = msg || '';
+  }
+
+  function openCheckout() {
+    if (!cartCount()) return;
+    closeCart();
+    goToCStep(1);
+    if (checkoutOverlay) checkoutOverlay.classList.add('open');
+  }
+  function closeCheckout() { if (checkoutOverlay) checkoutOverlay.classList.remove('open'); }
+
+  var cartCheckoutBtn = document.getElementById('cartCheckoutBtn');
+  if (cartCheckoutBtn) cartCheckoutBtn.addEventListener('click', openCheckout);
+  var checkoutCloseBtn = document.getElementById('checkoutCloseBtn');
+  if (checkoutCloseBtn) checkoutCloseBtn.addEventListener('click', closeCheckout);
+  if (checkoutOverlay) checkoutOverlay.addEventListener('click', function (e) { if (e.target === checkoutOverlay) closeCheckout(); });
+
+  if (checkoutOverlay) {
+    checkoutOverlay.querySelectorAll('.choice-group[data-group="copayment"] .choice-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        checkoutOverlay.querySelectorAll('.choice-group[data-group="copayment"] .choice-btn').forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        cState.payment = btn.getAttribute('data-value');
+        var waveBox = document.getElementById('co-pd-wave');
+        var kbzBox = document.getElementById('co-pd-kbz');
+        if (waveBox) waveBox.hidden = cState.payment !== 'Wave Money';
+        if (kbzBox) kbzBox.hidden = cState.payment !== 'KBZPay';
+      });
+    });
+
+    checkoutOverlay.querySelectorAll('.pd-copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = btn.getAttribute('data-copy');
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function () {
+            var original = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(function () { btn.textContent = original; }, 1500);
+          });
+        }
+      });
+    });
+
+    checkoutOverlay.querySelectorAll('[data-cgoto]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var target = parseInt(btn.getAttribute('data-cgoto'), 10);
+        if (target > cStep) {
+          if (cStep === 1) {
+            var name = (document.getElementById('coName') || {}).value || '';
+            var phone = (document.getElementById('coPhone') || {}).value || '';
+            var tg = (document.getElementById('coTelegram') || {}).value || '';
+            cState.name = name.trim(); cState.phone = phone.trim(); cState.telegram = tg.trim();
+            cState.notes = ((document.getElementById('coNotes') || {}).value || '').trim();
+            if (!cState.name || !cState.phone || !cState.telegram) {
+              setCError('cerr1', 'Name, Phone, Telegram Username ဖြည့်ပါ။');
+              return;
+            }
+            setCError('cerr1', '');
+          }
+          if (cStep === 2) {
+            if (!cState.payment) {
+              setCError('cerr2', 'ငွေပေးချေမှု နည်းလမ်း ရွေးပါ။');
+              return;
+            }
+            setCError('cerr2', '');
+          }
+        }
+        goToCStep(target);
+      });
+    });
+  }
+
+  var checkoutSubmit = document.getElementById('checkoutSubmit');
+  if (checkoutSubmit) {
+    checkoutSubmit.addEventListener('click', function () {
+      var txnVal = (document.getElementById('coTxn') || {}).value || '';
+      var accVal = (document.getElementById('coAccName') || {}).value || '';
+      cState.txn = txnVal.trim();
+      cState.accName = accVal.trim();
+
+      if (cState.txn.length !== 5 || !/^\d{5}$/.test(cState.txn)) {
+        setCError('cerr3', 'ငွေလွဲပြေစာ ID နောက်ဆုံး ၅ လုံးကို ဂဏန်းနဲ့ ထည့်ပါ။');
+        return;
+      }
+      if (!cState.accName) {
+        setCError('cerr3', 'ငွေလွဲထားသည့် အကောင့်နာမည် ထည့်ပါ။');
+        return;
+      }
+      setCError('cerr3', '');
+
+      var lines = ['🛒 New AI Pro Order — SHM Digital Marketing', ''];
+      Object.keys(cart).forEach(function (id) {
+        var p = findProduct(id);
+        if (!p) return;
+        lines.push('• ' + p.name + '  x' + cart[id] + '  (' + formatMMK(p.price * cart[id]) + ')');
+      });
+      lines.push('');
+      lines.push('Total: ' + formatMMK(cartTotal()));
+      lines.push('');
+      lines.push('Name: ' + cState.name);
+      lines.push('Phone: ' + cState.phone);
+      lines.push('Telegram: ' + cState.telegram);
+      if (cState.notes) lines.push('Notes: ' + cState.notes);
+      lines.push('');
+      lines.push('Payment Method: ' + cState.payment);
+      lines.push('Transaction Last 5 Digits: ' + cState.txn);
+      lines.push('Transferred From (Account Name): ' + cState.accName);
+      lines.push('');
+      lines.push('⚠️ Payment Screenshot ကို ဒီ Message နဲ့အတူ တွဲပို့ပေးပါ။');
+
+      var summaryEl = document.getElementById('checkoutSummary');
+      if (summaryEl) summaryEl.textContent = lines.join('\n');
+
+      goToCStep(4);
+    });
+  }
+
+  var checkoutCopyBtn = document.getElementById('checkoutCopyBtn');
+  if (checkoutCopyBtn) {
+    checkoutCopyBtn.addEventListener('click', function () {
+      var summaryEl = document.getElementById('checkoutSummary');
+      if (!summaryEl || !navigator.clipboard) return;
+      navigator.clipboard.writeText(summaryEl.textContent).then(function () {
+        var original = checkoutCopyBtn.textContent;
+        checkoutCopyBtn.textContent = 'Copied!';
+        setTimeout(function () { checkoutCopyBtn.textContent = original; }, 1500);
+      });
+    });
+  }
+
+  renderCartBadge();
+})();
