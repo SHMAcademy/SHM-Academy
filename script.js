@@ -301,10 +301,16 @@
         'Transaction Last 5 Digits: ' + state.txn + '\n' +
         'Transferred From (Account Name): ' + state.accName;
 
-      var summaryEl = document.getElementById('orderSummary');
-      if (summaryEl) summaryEl.textContent = summary;
-
-      goToStep(5);
+      var originalLabel = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="btn-spinner"></span> Processing…';
+      setTimeout(function () {
+        var summaryEl = document.getElementById('orderSummary');
+        if (summaryEl) summaryEl.textContent = summary;
+        goToStep(5);
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalLabel;
+      }, 500);
     });
   }
 
@@ -390,7 +396,11 @@
   var checkoutOverlay = document.getElementById('checkoutOverlay');
 
   function renderCartBadge() {
-    if (cartCountEl) cartCountEl.textContent = cartCount();
+    if (!cartCountEl) return;
+    cartCountEl.textContent = cartCount();
+    cartCountEl.classList.remove('pulse');
+    void cartCountEl.offsetWidth; // restart animation
+    cartCountEl.classList.add('pulse');
   }
 
   function renderCartDrawer() {
@@ -596,10 +606,16 @@
       lines.push('');
       lines.push('⚠️ Payment Screenshot ကို ဒီ Message နဲ့အတူ တွဲပို့ပေးပါ။');
 
-      var summaryEl = document.getElementById('checkoutSummary');
-      if (summaryEl) summaryEl.textContent = lines.join('\n');
-
-      goToCStep(4);
+      var originalLabel = checkoutSubmit.innerHTML;
+      checkoutSubmit.disabled = true;
+      checkoutSubmit.innerHTML = '<span class="btn-spinner"></span> Processing…';
+      setTimeout(function () {
+        var summaryEl = document.getElementById('checkoutSummary');
+        if (summaryEl) summaryEl.textContent = lines.join('\n');
+        goToCStep(4);
+        checkoutSubmit.disabled = false;
+        checkoutSubmit.innerHTML = originalLabel;
+      }, 500);
     });
   }
 
@@ -617,4 +633,82 @@
   }
 
   renderCartBadge();
+})();
+
+// Preloader — hides once the page has finished loading
+(function () {
+  var pre = document.getElementById('preloader');
+  if (!pre) return;
+  function hidePreloader() {
+    pre.classList.add('pl-hide');
+    setTimeout(function () { pre.style.display = 'none'; }, 550);
+  }
+  if (document.readyState === 'complete') {
+    setTimeout(hidePreloader, 200);
+  } else {
+    window.addEventListener('load', function () { setTimeout(hidePreloader, 200); });
+  }
+  // Safety net: never let the preloader block the page for more than 2.5s
+  setTimeout(hidePreloader, 2500);
+})();
+
+// Cursor glow — follows the mouse on desktop pointers only
+(function () {
+  var glow = document.getElementById('cursorGlow');
+  if (!glow) return;
+  if (window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var raf = null;
+  window.addEventListener('mousemove', function (e) {
+    glow.classList.add('active');
+    if (raf) return;
+    raf = requestAnimationFrame(function () {
+      glow.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px)';
+      raf = null;
+    });
+  });
+  window.addEventListener('mouseleave', function () { glow.classList.remove('active'); });
+})();
+
+// 3D tilt — applies a subtle perspective tilt to card grids on mousemove (desktop only)
+(function () {
+  if (window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var selectors = '.service-card, .prod-card, .feature-card, .tip-card, .contact-card, .process-step, .orbit-item';
+  var cards = document.querySelectorAll(selectors);
+
+  cards.forEach(function (card) {
+    card.classList.add('tilt-3d');
+    card.addEventListener('mousemove', function (e) {
+      var r = card.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;   // 0..1
+      var py = (e.clientY - r.top) / r.height;   // 0..1
+      var rx = (0.5 - py) * 10;  // rotateX degrees
+      var ry = (px - 0.5) * 10;  // rotateY degrees
+      card.style.transform = 'perspective(700px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-4px)';
+    });
+    card.addEventListener('mouseleave', function () {
+      card.style.transform = '';
+    });
+  });
+})();
+
+// Button ripple microinteraction — spawns an expanding circle at the click point
+(function () {
+  var selector = '.btn-primary, .btn-ghost, .prod-add, .prod-order, .choice-btn, .cart-fab, .nav-cta';
+  document.addEventListener('click', function (e) {
+    var target = e.target.closest(selector);
+    if (!target) return;
+    var r = target.getBoundingClientRect();
+    var size = Math.max(r.width, r.height) * 1.4;
+    var ripple = document.createElement('span');
+    ripple.className = 'btn-ripple';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - r.left - size / 2) + 'px';
+    ripple.style.top = (e.clientY - r.top - size / 2) + 'px';
+    target.appendChild(ripple);
+    setTimeout(function () { ripple.remove(); }, 650);
+  });
 })();
