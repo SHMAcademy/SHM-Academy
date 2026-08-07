@@ -61,6 +61,79 @@ a:focus-visible, button:focus-visible{
 }
 
 /* ==========================================================================
+   Preloader — page load animation
+   ========================================================================== */
+.preloader{
+  position:fixed; inset:0; z-index:9999;
+  background:var(--bg);
+  display:flex; align-items:center; justify-content:center;
+  transition:opacity .5s ease, visibility .5s ease;
+}
+.preloader.pl-hide{ opacity:0; visibility:hidden; pointer-events:none; }
+.preloader-mark{ position:relative; width:64px; height:64px; }
+.pl-ring{
+  position:absolute; inset:0; border-radius:50%;
+  border:2px solid rgba(192,132,252,0.2);
+  border-top-color:var(--halo-2);
+  animation:spin 0.9s linear infinite;
+}
+.pl-core{
+  position:absolute; inset:18px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%, #fff, var(--halo-2) 45%, var(--halo-1) 100%);
+  box-shadow:0 0 24px 4px rgba(155,92,255,0.6);
+  animation:pulse 1.4s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   Cursor glow — desktop mouse-follow effect
+   ========================================================================== */
+.cursor-glow{
+  position:fixed; top:0; left:0; z-index:2;
+  width:420px; height:420px; margin:-210px 0 0 -210px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(155,92,255,0.14), transparent 70%);
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .4s ease;
+  will-change:transform;
+}
+.cursor-glow.active{ opacity:1; }
+@media (hover:none), (pointer:coarse){ .cursor-glow{ display:none; } }
+
+/* ==========================================================================
+   Floating hero icons
+   ========================================================================== */
+.float-icons{
+  position:absolute; inset:0; z-index:0;
+  overflow:hidden; pointer-events:none;
+}
+.float-icon{
+  position:absolute;
+  width:46px; height:46px; border-radius:14px;
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+  border:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0.55;
+  animation:float-bob 6s ease-in-out infinite;
+}
+.float-icon svg{ width:20px; height:20px; stroke:var(--halo-2); }
+.float-icon.fi-1{ top:8%;  left:4%;  animation-duration:7s; }
+.float-icon.fi-2{ top:20%; left:14%; animation-duration:8.5s; animation-delay:.6s; }
+.float-icon.fi-3{ top:6%;  right:6%; animation-duration:6.5s; animation-delay:1.1s; }
+.float-icon.fi-4{ top:22%; right:15%;animation-duration:9s;   animation-delay:.3s; }
+.float-icon.fi-5{ bottom:10%; left:8%; animation-duration:7.5s; animation-delay:1.6s; }
+.float-icon.fi-6{ bottom:14%; right:9%; animation-duration:8s;  animation-delay:.9s; }
+@keyframes float-bob{
+  0%, 100%{ transform:translateY(0) rotate(0deg); }
+  50%{ transform:translateY(-16px) rotate(6deg); }
+}
+@media (max-width: 960px){
+  .float-icon{ width:36px; height:36px; opacity:0.4; }
+  .float-icon svg{ width:16px; height:16px; }
+  .float-icon.fi-2, .float-icon.fi-4{ display:none; }
+}
+
+/* ==========================================================================
    Background halo field — signature motif, reused site-wide
    ========================================================================== */
 .halo-field{
@@ -156,8 +229,27 @@ a:focus-visible, button:focus-visible{
   padding-bottom:clamp(56px, 8vw, 96px);
   text-align:center;
 }
+.hero > .wrap{ position:relative; z-index:1; }
 .hero-grid{ display:block; }
 .hero-copy{ max-width:720px; margin:0 auto; }
+
+/* Hero load-in — staggered entrance played once on page load (not scroll) */
+.has-js .hero-load{ opacity:0; transform:translateY(22px); }
+.hero-load{
+  animation:hero-load-in .8s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.hero-copy .eyebrow.hero-load{ animation-delay:.15s; }
+.hero-copy h1.hero-load{ animation-delay:.28s; }
+.hero-copy .subtitle.hero-load{ animation-delay:.42s; }
+.hero-copy .platform-rotator.hero-load{ animation-delay:.52s; }
+.hero-copy p.lede.hero-load{ animation-delay:.6s; }
+.hero-copy .hero-actions.hero-load{ animation-delay:.72s; }
+.hero-art.hero-load{ animation-delay:.4s; animation-duration:1s; }
+@keyframes hero-load-in{
+  from{ opacity:0; transform:translateY(22px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
 .eyebrow{
   display:inline-flex; align-items:center; gap:8px;
   font-size:12.5px; letter-spacing:0.12em; text-transform:uppercase;
@@ -178,8 +270,14 @@ a:focus-visible, button:focus-visible{
   letter-spacing:-0.02em;
 }
 .hero h1 .accent{
-  background:linear-gradient(120deg, var(--halo-1), var(--halo-3) 60%, var(--halo-2));
+  background:linear-gradient(120deg, var(--halo-1), #fff 18%, var(--halo-3) 45%, var(--halo-2) 65%, var(--halo-1));
+  background-size:250% 100%;
   -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:text-shimmer 6s linear infinite;
+}
+@keyframes text-shimmer{
+  0%{ background-position:0% 50%; }
+  100%{ background-position:250% 50%; }
 }
 .hero .subtitle{
   margin-top:18px;
@@ -1217,4 +1315,58 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
   .feature-grid{ grid-template-columns:1fr; }
   .prod-grid{ grid-template-columns:1fr; }
   .cart-drawer{ width:100%; }
+}
+
+/* ==========================================================================
+   3D tilt, microinteractions, loading spinner
+   ========================================================================== */
+.tilt-3d{
+  transition:transform .15s ease-out, box-shadow .15s ease-out;
+  will-change:transform;
+  transform-style:preserve-3d;
+}
+@media (hover:none), (pointer:coarse){
+  .tilt-3d{ transition:transform .25s ease; }
+}
+
+/* Button press + ripple microinteraction */
+.btn, .prod-add, .prod-order, .choice-btn, .cart-fab, .nav-cta{
+  position:relative; overflow:hidden;
+}
+.btn:active, .prod-add:active, .prod-order:active, .choice-btn:active, .nav-cta:active{
+  transform:scale(0.96);
+}
+.btn-ripple{
+  position:absolute; border-radius:50%;
+  background:rgba(255,255,255,0.45);
+  transform:scale(0); opacity:0.6;
+  animation:btn-ripple-anim .6s ease-out forwards;
+  pointer-events:none;
+}
+@keyframes btn-ripple-anim{
+  to{ transform:scale(2.6); opacity:0; }
+}
+
+/* Cart badge pulse when an item is added */
+.cart-fab-count.pulse{ animation:cart-pulse .5s ease; }
+@keyframes cart-pulse{
+  0%{ transform:scale(1); }
+  40%{ transform:scale(1.5); }
+  100%{ transform:scale(1); }
+}
+
+/* Inline button loading spinner (used on submit while generating the summary) */
+.btn-spinner{
+  display:inline-block; width:15px; height:15px;
+  border:2px solid rgba(255,255,255,0.4); border-top-color:#fff;
+  border-radius:50%;
+  animation:spin 0.7s linear infinite;
+  margin-right:2px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .preloader-mark, .pl-ring, .pl-core, .float-icon, .eyebrow .dot,
+  .hero h1 .accent, .cursor-glow, .btn-spinner{ animation:none !important; }
+  .tilt-3d{ transition:none !important; }
+  .hero-load{ animation:none !important; opacity:1 !important; transform:none !important; }
 }
