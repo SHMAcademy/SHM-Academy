@@ -101,7 +101,7 @@ a:focus-visible, button:focus-visible{
 @media (hover:none), (pointer:coarse){ .cursor-glow{ display:none; } }
 
 /* ==========================================================================
-   Floating hero icons
+   Floating hero icons — cluster around the heading, each moving independently
    ========================================================================== */
 .float-icons{
   position:absolute; inset:0; z-index:0;
@@ -112,25 +112,54 @@ a:focus-visible, button:focus-visible{
   width:46px; height:46px; border-radius:14px;
   background:linear-gradient(180deg, var(--surface), var(--surface-2));
   border:1px solid var(--line);
+  box-shadow:0 8px 20px -8px rgba(0,0,0,0.5);
   display:flex; align-items:center; justify-content:center;
-  opacity:0.55;
-  animation:float-bob 6s ease-in-out infinite;
+  opacity:0.7;
 }
 .float-icon svg{ width:20px; height:20px; stroke:var(--halo-2); }
-.float-icon.fi-1{ top:8%;  left:4%;  animation-duration:7s; }
-.float-icon.fi-2{ top:20%; left:14%; animation-duration:8.5s; animation-delay:.6s; }
-.float-icon.fi-3{ top:6%;  right:6%; animation-duration:6.5s; animation-delay:1.1s; }
-.float-icon.fi-4{ top:22%; right:15%;animation-duration:9s;   animation-delay:.3s; }
-.float-icon.fi-5{ bottom:10%; left:8%; animation-duration:7.5s; animation-delay:1.6s; }
-.float-icon.fi-6{ bottom:14%; right:9%; animation-duration:8s;  animation-delay:.9s; }
+
+/* Three independent motion patterns so icons don't move in sync */
+.float-icon.motion-bob{   animation-name:float-bob; }
+.float-icon.motion-drift{ animation-name:float-drift; }
+.float-icon.motion-sway{  animation-name:float-sway; }
+.float-icon{ animation-timing-function:ease-in-out; animation-iteration-count:infinite; }
+
 @keyframes float-bob{
-  0%, 100%{ transform:translateY(0) rotate(0deg); }
-  50%{ transform:translateY(-16px) rotate(6deg); }
+  0%, 100%{ transform:translate(0,0) rotate(0deg); }
+  50%{ transform:translate(0,-18px) rotate(8deg); }
 }
+@keyframes float-drift{
+  0%, 100%{ transform:translate(0,0) rotate(0deg); }
+  33%{ transform:translate(10px,-12px) rotate(-6deg); }
+  66%{ transform:translate(-8px,-4px) rotate(5deg); }
+}
+@keyframes float-sway{
+  0%, 100%{ transform:translate(0,0) rotate(0deg); }
+  50%{ transform:translate(-14px,10px) rotate(-9deg); }
+}
+
+/* Positions hug the text column — left cluster + right cluster, spanning the
+   eyebrow-to-lede vertical range so icons feel like they surround the heading */
+.float-icon.fi-1{ top:6%;   left:6%;   animation-duration:7s;   animation-delay:0s; }
+.float-icon.fi-2{ top:28%;  left:1%;   animation-duration:8.5s; animation-delay:.5s; }
+.float-icon.fi-3{ top:52%;  left:9%;   animation-duration:6.8s; animation-delay:1.2s; }
+.float-icon.fi-4{ top:8%;   right:5%;  animation-duration:7.6s; animation-delay:.3s; }
+.float-icon.fi-5{ top:30%;  right:0%;  animation-duration:9s;   animation-delay:1s; }
+.float-icon.fi-6{ top:54%;  right:8%;  animation-duration:7.2s; animation-delay:1.6s; }
+.float-icon.fi-7{ top:2%;   left:32%;  animation-duration:8s;   animation-delay:.8s; }
+.float-icon.fi-8{ top:2%;   right:30%; animation-duration:6.6s; animation-delay:1.4s; }
+
 @media (max-width: 960px){
-  .float-icon{ width:36px; height:36px; opacity:0.4; }
-  .float-icon svg{ width:16px; height:16px; }
-  .float-icon.fi-2, .float-icon.fi-4{ display:none; }
+  .float-icon{ width:34px; height:34px; opacity:0.55; }
+  .float-icon svg{ width:15px; height:15px; }
+  .float-icon.fi-1{ top:2%; left:2%; }
+  .float-icon.fi-2{ top:24%; left:0%; }
+  .float-icon.fi-3{ display:none; }
+  .float-icon.fi-4{ top:2%; right:2%; }
+  .float-icon.fi-5{ top:24%; right:0%; }
+  .float-icon.fi-6{ display:none; }
+  .float-icon.fi-7{ display:none; }
+  .float-icon.fi-8{ display:none; }
 }
 
 /* ==========================================================================
@@ -456,15 +485,7 @@ a:focus-visible, button:focus-visible{
 .brand-seal-inner svg text{ fill:#fff; }
 
 @media (min-width: 960px){
-  .hero-grid{
-    display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center; gap:48px;
-    text-align:left;
-  }
-  .hero-copy{ margin:0; max-width:none; }
-  .hero .eyebrow{ margin-left:0; }
-  .hero p.lede{ margin-left:0; margin-right:0; }
-  .hero-actions{ justify-content:flex-start; }
-  .hero-art{ margin-top:0; }
+  .hero-copy{ max-width:760px; margin:0 auto; }
 }
 
 /* ==========================================================================
