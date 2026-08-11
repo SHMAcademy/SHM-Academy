@@ -16,6 +16,13 @@
 </head>
 <body>
 
+<!-- ================= GSAP SCROLL BACKGROUND (isolated, z-index:-1) ================= -->
+<div id="gsap-bg-canvas" class="parallax-bg-layer" aria-hidden="true">
+  <div class="pbg-orb pbg-1"></div>
+  <div class="pbg-orb pbg-2"></div>
+  <div class="pbg-orb pbg-3"></div>
+</div>
+
 <!-- ================= PRELOADER ================= -->
 <div class="preloader" id="preloader" aria-hidden="true">
   <div class="preloader-mark">
@@ -927,5 +934,42 @@
 </footer>
 
 <script src="script.js"></script>
+
+<!-- ================= GSAP + SCROLLTRIGGER (background parallax only) ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function () {
+  // Safe no-op if the CDN failed to load (offline, ad-blocker, etc.) or the
+  // user prefers reduced motion — the background layer just stays static.
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  var orbs = gsap.utils.toArray('#gsap-bg-canvas .pbg-orb');
+  if (!orbs.length) return;
+
+  // Each orb drifts and rotates at a slightly different rate as the whole
+  // page scrolls, giving a slow ambient parallax feel. scrub:true ties the
+  // animation directly to scroll position (no independent ticking cost),
+  // and everything animates only transform/opacity so it stays GPU-cheap.
+  orbs.forEach(function (orb, i) {
+    var dir = i % 2 === 0 ? 1 : -1;
+    gsap.to(orb, {
+      yPercent: 30 * dir,
+      xPercent: 12 * dir,
+      rotation: 25 * dir,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.body,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
