@@ -337,7 +337,7 @@
   if (!grid) return;
 
   var PRODUCTS = [
-    { id: 'canva',        name: 'Canva Pro',                        price: 20000 },
+    { id: 'canva',        name: 'Canva Pro',                        price: 23000 },
     { id: 'canva-prem',   name: 'Canva Pro (Premium)',               price: 35000 },
     { id: 'perplexity',   name: 'Perplexity Ai Pro Plan',            price: 23000 },
     { id: 'gemini-pro',   name: 'Gemini Ai Pro',                     price: 23000 },
