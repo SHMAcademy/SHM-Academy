@@ -1429,3 +1429,43 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
 .course-content p{ color:var(--text-dim); margin-top:16px; font-size:15.5px; line-height:1.65; }
+
+/* ==========================================================================
+   GSAP scroll-parallax background layer (isolated — does not touch any
+   existing class, variable, or layout. Fixed + z-index:-1, purely decorative)
+   ========================================================================== */
+.parallax-bg-layer{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  overflow:hidden;
+  pointer-events:none;
+}
+.parallax-bg-layer .pbg-orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:0.22;
+  will-change:transform;
+}
+.parallax-bg-layer .pbg-1{
+  width:46vw; height:46vw; max-width:560px; max-height:560px;
+  top:-10%; left:-8%;
+  background:radial-gradient(circle, var(--halo-1), transparent 70%);
+}
+.parallax-bg-layer .pbg-2{
+  width:40vw; height:40vw; max-width:500px; max-height:500px;
+  top:35%; right:-10%;
+  background:radial-gradient(circle, var(--halo-2), transparent 70%);
+}
+.parallax-bg-layer .pbg-3{
+  width:38vw; height:38vw; max-width:480px; max-height:480px;
+  bottom:-8%; left:20%;
+  background:radial-gradient(circle, var(--halo-3), transparent 70%);
+}
+@media (max-width: 700px){
+  .parallax-bg-layer .pbg-orb{ opacity:0.15; filter:blur(60px); }
+}
+@media (prefers-reduced-motion: reduce){
+  .parallax-bg-layer{ display:none; }
+}
