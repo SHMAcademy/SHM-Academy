@@ -1391,3 +1391,41 @@ section{ position:relative; z-index:1; padding-top:clamp(56px, 8vw, 96px); paddi
   .tilt-3d{ transition:none !important; }
   .hero-load{ animation:none !important; opacity:1 !important; transform:none !important; }
 }
+
+/* ==========================================================================
+   Course promotion banner
+   ========================================================================== */
+#course{ padding-top:0; }
+.course-banner{
+  position:relative;
+  border-radius:28px;
+  padding:clamp(44px, 7vw, 76px) clamp(24px, 6vw, 64px);
+  text-align:center;
+  overflow:hidden;
+  background:linear-gradient(180deg, var(--surface), var(--surface-2));
+  border:1px solid rgba(27,116,190,0.35);
+}
+.course-glow{
+  position:absolute; border-radius:50%; filter:blur(60px);
+  animation:driftglow 8s ease-in-out infinite;
+}
+.course-glow.g1{ width:320px; height:320px; background:var(--halo-2); opacity:0.3; top:-110px; right:-70px; }
+.course-glow.g2{ width:280px; height:280px; background:var(--halo-1); opacity:0.32; bottom:-100px; left:-60px; animation-delay:1.6s; }
+.course-content{ position:relative; z-index:2; max-width:640px; margin:0 auto; }
+.course-icon{
+  width:56px; height:56px; margin:20px auto 0;
+  border-radius:16px;
+  background:linear-gradient(135deg, var(--halo-1), var(--halo-3));
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 26px -8px rgba(13,81,140,0.7);
+}
+.course-icon svg{ width:26px; height:26px; stroke:#fff; }
+.course-content h2{
+  font-family:var(--font-display); font-weight:700;
+  font-size:clamp(26px, 4.5vw, 40px); margin-top:18px; letter-spacing:-0.01em;
+}
+.course-content h2 .accent{
+  background:linear-gradient(120deg, var(--halo-1), var(--halo-3) 60%, var(--halo-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.course-content p{ color:var(--text-dim); margin-top:16px; font-size:15.5px; line-height:1.65; }
