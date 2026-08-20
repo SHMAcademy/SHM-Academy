@@ -572,6 +572,108 @@
   </div>
 </div>
 
+  <!-- Outline Custom Key Service Section -->
+<div class="section-title">
+  <span class="section-badge">NEW</span>
+  <h2>Outline VPN <span class="accent-text">Custom Key ဝယ်ယူရန်</span></h2>
+  <p class="section-sub">
+    မိမိကြိုက်နှစ်သက်ရာ မူပိုင်နာမည်ဖြင့် Outline Custom Key များကို ဈေးနှုန်းချိုသာစွာ ဝယ်ယူနိုင်ပါပြီ။
+  </p>
+</div>
+
+    <div class="section-title">
+    <span class="section-badge">NEW</span>
+    <h2>Outline VPN <span class="accent-text">Custom Key ဝယ်ယူရန်</span></h2>
+    <p class="section-sub">⚡ မြန်ဆန်စိတ်ချရပြီး Dynamic Bandwidth ပါဝင်သော Premium VPN Key များ</p>
+  </div>
+
+  <div class="order-wizard">
+    <!-- Step 1: Custom Name & Package Selection -->
+    <div class="order-step active" data-ostep="1">
+      <div class="form-group">
+        <label for="outlineCustomName">🔑 စိတ်ကြိုက် မူပိုင်နာမည် (Custom Key Name)</label>
+        <input type="text" id="outlineCustomName" class="form-control" placeholder="ဥပမာ - MyVIP-Outline" />
+      </div>
+
+      <div class="form-group">
+        <label>ဝယ်ယူလိုသော Package ကို ရွေးချယ်ပါ</label>
+        <div class="choice-group" data-group="outlinePackage">
+          <!-- JS မှတစ်ဆင့် Buttons များကို Render လုပ်ပေးမည်ဖြစ်သည် -->
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="outlineQty">အရေအတွက် (Keys)</label>
+        <input type="number" id="outlineQty" class="form-control" value="1" min="1" />
+      </div>
+
+      <div class="price-summary-box">
+        <span>စုစုပေါင်း ကျသင့်ငွေ - </span>
+        <strong id="outlineTotalPrice">8,000 Ks</strong>
+        <small id="outlineUnitPrice" style="margin-left: 5px; opacity: 0.8;"></small>
+      </div>
+
+      <div id="oerr1" class="error-text" style="color: #ff4d4d; margin-top: 8px;"></div>
+      <button type="button" class="btn-primary" data-ogoto="2" style="margin-top: 15px;">ရှေ့သို့ ဆက်သွားရန်</button>
+    </div>
+
+    <!-- Step 2: Payment Method -->
+    <div class="order-step" data-ostep="2">
+      <div class="form-group">
+        <label>ငွေပေးချေမှု နည်းလမ်း ရွေးချယ်ပါ</label>
+        <div class="choice-group" data-group="outlinePayment">
+          <button type="button" class="choice-btn" data-value="Wave Money">Wave Money</button>
+          <button type="button" class="choice-btn" data-value="KBZPay">KBZPay</button>
+        </div>
+      </div>
+
+      <!-- Wave Details -->
+      <div id="outline-pd-wave" hidden class="payment-details-box">
+        <p>Wave Money Number: <strong>09xxxxxxxxx</strong> <button type="button" class="pd-copy" data-copy="09xxxxxxxxx">Copy</button></p>
+        <p>Account Name: <strong>U SHM</strong></p>
+      </div>
+
+      <!-- KBZPay Details -->
+      <div id="outline-pd-kbz" hidden class="payment-details-box">
+        <p>KBZPay Number: <strong>09xxxxxxxxx</strong> <button type="button" class="pd-copy" data-copy="09xxxxxxxxx">Copy</button></p>
+        <p>Account Name: <strong>U SHM</strong></p>
+      </div>
+
+      <div id="oerr2" class="error-text" style="color: #ff4d4d; margin-top: 8px;"></div>
+      <div style="display: flex; gap: 10px; margin-top: 15px;">
+        <button type="button" class="btn-ghost" data-ogoto="1">နောက်သို့</button>
+        <button type="button" class="btn-primary" data-ogoto="3">ရှေ့သို့ ဆက်သွားရန်</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Transaction Info -->
+    <div class="order-step" data-ostep="3">
+      <div class="form-group">
+        <label for="outlineTxn">ငွေလွှဲပြေစာ ID နောက်ဆုံး ၅ လုံး</label>
+        <input type="text" id="outlineTxn" class="form-control" maxlength="5" placeholder="12345" />
+      </div>
+      <div class="form-group">
+        <label for="outlineAccName">ငွေလွှဲထားသည့် အကောင့်နာမည်</label>
+        <input type="text" id="outlineAccName" class="form-control" placeholder="ဦးအေး" />
+      </div>
+
+      <div id="oerr3" class="error-text" style="color: #ff4d4d; margin-top: 8px;"></div>
+      <div style="display: flex; gap: 10px; margin-top: 15px;">
+        <button type="button" class="btn-ghost" data-ogoto="2">နောက်သို့</button>
+        <button type="button" id="outlineSubmit" class="btn-primary">Order တင်မည်</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Summary Output -->
+    <div class="order-step" data-ostep="4">
+      <h3>🎉 Order စာရင်း အဆင်သင့်ဖြစ်ပါပြီ</h3>
+      <p>အောက်ပါ စာသားများကို Copy ကူး၍ Telegram အား ပေးပို့ပေးပါ သို့မဟုတ် Confirm လုပ်ပါ။</p>
+      <pre id="outlineSummary" class="summary-box" style="white-space: pre-wrap; background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; margin: 15px 0;"></pre>
+      <button type="button" id="outlineCopyBtn" class="btn-primary">Copy Summary</button>
+    </div>
+  </div>
+</section>
+  
 <!-- ================= FEATURE MOCKUPS ================= -->
 <section id="features">
   <div class="wrap">
