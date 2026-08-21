@@ -269,6 +269,26 @@
     });
   });
 
+  // VPN Packages Data Configuration
+const VPN_PRICES = {
+  "Outline VPN": [
+    { name: "80GB / 30 Days", price: 8000 },
+    { name: "150GB / 30 Days", price: 16000 },
+    { name: "250GB / 30 Days", price: 32000 }
+  ],
+  "V2Box VPN": [
+    { name: "1 Device - Unlimited - 1 Month", price: 8200 },
+    { name: "1 Device - Unlimited - 3 Months", price: 25000 },
+    { name: "1 Device - Unlimited - 6 Months", price: 49000 }
+  ]
+};
+
+// Quantity/Multiplier တိုးသွားပါက ဆတိုး တွက်ချက်ပေးသည့် Function Example:
+function calculateVpnPrice(selectedService, basePrice, quantity) {
+  // quantity သည် ဝယ်ယူလိုသည့် အရေအတွက် (ဥပမာ- 1 key, 2 keys, 3 keys)
+  return basePrice * quantity;
+}
+  
   // Submit — validate step 4, build summary, jump to step 5
   var submitBtn = document.getElementById('orderSubmit');
   if (submitBtn) {
