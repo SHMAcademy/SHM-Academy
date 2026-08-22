@@ -9,30 +9,12 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Bricolage+Grotesque:wght@600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 <script>document.documentElement.classList.add('has-js');</script>
 </head>
 <body>
-
-<!-- ================= GSAP SCROLL BACKGROUND (isolated, z-index:-1) ================= -->
-<div id="gsap-bg-canvas" class="parallax-bg-layer" aria-hidden="true">
-  <div class="pbg-orb pbg-1"></div>
-  <div class="pbg-orb pbg-2"></div>
-  <div class="pbg-orb pbg-3"></div>
-</div>
-
-<!-- ================= PRELOADER ================= -->
-<div class="preloader" id="preloader" aria-hidden="true">
-  <div class="preloader-mark">
-    <div class="pl-ring"></div>
-    <div class="pl-core"></div>
-  </div>
-</div>
-
-<!-- Cursor glow — follows the mouse on desktop only -->
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
 <!-- Signature background motif: rotating halo rings, present behind every section -->
 <div class="halo-field" aria-hidden="true">
@@ -59,10 +41,8 @@
       <a href="#services">Services</a>
       <a href="#pricing">Pricing</a>
       <a href="#order">Order Now</a>
-      <a href="#ai-products">AI Pro</a>
       <a href="#work">Highlights</a>
       <a href="#faq">FAQ</a>
-      <a href="#course">Course</a>
       <a href="#founder">Founder</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -74,36 +54,31 @@
 
 <!-- ================= HERO ================= -->
 <section class="hero">
-  <div class="float-icons" aria-hidden="true">
-    <div class="float-icon fi-1 motion-bob"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-    <div class="float-icon fi-2 motion-drift"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
-    <div class="float-icon fi-3 motion-sway"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3v11a3.5 3.5 0 1 1-3.5-3.5c.35 0 .69.05 1 .14V7.3a6.5 6.5 0 1 0 5.5 6.4V9.2a7 7 0 0 0 4-1.2V4.5a4.5 4.5 0 0 1-4.5-1.5H16z"/></svg></div>
-    <div class="float-icon fi-4 motion-drift"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 2 10.5l6 2.2M21 3l-3.2 17-6.2-4.6M21 3l-11.6 10.7M9 12.7v5.3l3-3.3"/></svg></div>
-    <div class="float-icon fi-5 motion-bob"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></div>
-    <div class="float-icon fi-6 motion-sway"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
-    <div class="float-icon fi-7 motion-drift"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 2 10.5l6 2.2M21 3l-3.2 17-6.2-4.6M21 3l-11.6 10.7M9 12.7v5.3l3-3.3"/></svg></div>
-    <div class="float-icon fi-8 motion-bob"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3v11a3.5 3.5 0 1 1-3.5-3.5c.35 0 .69.05 1 .14V7.3a6.5 6.5 0 1 0 5.5 6.4V9.2a7 7 0 0 0 4-1.2V4.5a4.5 4.5 0 0 1-4.5-1.5H16z"/></svg></div>
-  </div>
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow hero-load"><span class="dot"></span> Your Social Growth Partner</div>
-      <h1 class="hero-load">Grow your <span class="accent">Social Halo</span><br>with SHM Digital Marketing</h1>
-      <p class="subtitle hero-load">Social Halo Management</p>
-      <div class="platform-rotator hero-load" aria-hidden="true">
-        <span>Now growing pages on</span>
-        <span class="rotator-track" id="platformRotator">
-          <span class="rotator-word">Facebook</span>
-        </span>
-      </div>
-      <p class="lede hero-load">
-        Facebook Page ကနေ Instagram၊ TikTok အထိ — Likes, Followers, Page Sell, Premium VPN, Blue Mark
-        နဲ့ Digital Marketing Service အားလုံးကို တစ်နေရာတည်းမှာ စိတ်ချစွာ လုပ်ဆောင်ပေးနေတဲ့
-        Social Halo Management Team။
-      </p>
-      <div class="hero-actions hero-load">
-        <a class="btn btn-primary" href="#pricing">See Pricing</a>
-        <a class="btn btn-ghost" href="https://t.me/SHMAcademy" target="_blank" rel="noopener">Message on Telegram</a>
-      </div>
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> Your Social Growth Partner</div>
+    <h1>Grow your <span class="accent">social halo</span><br>with SHM Digital Marketing</h1>
+    <p class="subtitle">Social Halo Management</p>
+    <div class="platform-rotator" aria-hidden="true">
+      <span>Now growing pages on</span>
+      <span class="rotator-track" id="platformRotator">
+        <span class="rotator-word">Facebook</span>
+      </span>
+    </div>
+    <p class="lede">
+      Facebook Page ကနေ Instagram၊ TikTok အထိ — Likes, Followers, Page Sell, Blue Mark
+      နဲ့ Digital Marketing Service အားလုံးကို တစ်နေရာတည်းမှာ စိတ်ချစွာ လုပ်ဆောင်ပေးနေတဲ့
+      Social Halo Management Team။
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#pricing">See Pricing</a>
+      <a class="btn btn-ghost" href="https://t.me/SHMAcademy" target="_blank" rel="noopener">Message on Telegram</a>
+    </div>
+
+    <!-- Eye-catching hero visual, pure CSS/SVG — no external image dependency -->
+    <div class="hero-visual" aria-hidden="true">
+      <div class="orbit"><span class="sat"></span></div>
+      <div class="orbit o2"><span class="sat"></span></div>
+      <div class="core"></div>
     </div>
   </div>
 </section>
@@ -133,9 +108,9 @@
   <div class="wrap">
     <div class="stats-strip">
       <div class="stat-card reveal">
-        <div class="stat-num" data-count-to="6">6</div>
+        <div class="stat-num" data-count-to="5">5</div>
         <div class="stat-label">Core Services</div>
-        <p class="stat-cap">Marketing, Refill, Premium VPN, Page Sell, Blue Mark &amp; Social Service</p>
+        <p class="stat-cap">Marketing, Refill, Page Sell, Blue Mark &amp; Social Service</p>
       </div>
       <div class="stat-card reveal">
         <div class="stat-num" data-count-to="3">3</div>
@@ -251,52 +226,6 @@
   </div>
 </section>
 
-<!-- ================= INTEGRATIONS ================= -->
-<section id="integrations">
-  <div class="wrap">
-    <div class="section-head center reveal" style="margin-left:auto; margin-right:auto;">
-      <div class="int-orb" aria-hidden="true">
-        <div class="int-orb-ring"></div>
-        <div class="int-orb-core"></div>
-      </div>
-      <div class="k">✦ Platforms ✦</div>
-      <h2>Works Across Your <span class="accent">Favorite Platforms</span></h2>
-      <p>SHM Digital Marketing က သင့် Social Media Platform အားလုံးကို တစ်နေရာတည်းက ဆက်သွယ်စီမံပေးနိုင်ပါတယ်။</p>
-    </div>
-
-    <div class="hub-diagram reveal">
-      <svg class="hub-lines" viewBox="0 0 700 320" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M75,70 C230,70 230,140 300,140" />
-        <path d="M75,250 C230,250 230,180 300,180" />
-        <path d="M625,70 C470,70 470,140 400,140" />
-        <path d="M625,250 C470,250 470,180 400,180" />
-        <circle cx="75" cy="70" r="3"/>
-        <circle cx="75" cy="250" r="3"/>
-        <circle cx="625" cy="70" r="3"/>
-        <circle cx="625" cy="250" r="3"/>
-      </svg>
-
-      <div class="hub-node" style="top:8%; left:2%;" aria-label="Facebook" title="Facebook">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-      </div>
-      <div class="hub-node" style="bottom:8%; left:2%;" aria-label="Instagram" title="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-      </div>
-      <div class="hub-node" style="top:8%; right:2%;" aria-label="TikTok" title="TikTok">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3v11a3.5 3.5 0 1 1-3.5-3.5c.35 0 .69.05 1 .14V7.3a6.5 6.5 0 1 0 5.5 6.4V9.2a7 7 0 0 0 4-1.2V4.5a4.5 4.5 0 0 1-4.5-1.5H16z"/></svg>
-      </div>
-      <div class="hub-node" style="bottom:8%; right:2%;" aria-label="Telegram" title="Telegram">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 2 10.5l6 2.2M21 3l-3.2 17-6.2-4.6M21 3l-11.6 10.7M9 12.7v5.3l3-3.3"/></svg>
-      </div>
-
-      <div class="hub-center">
-        <span class="hc-dot tl"></span><span class="hc-dot tr"></span><span class="hc-dot bl"></span><span class="hc-dot br"></span>
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="9" height="9" rx="2"/><rect x="13" y="2" width="9" height="9" rx="2"/><rect x="2" y="13" width="9" height="9" rx="2"/><rect x="13" y="13" width="9" height="9" rx="2"/></svg>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= PRICING ================= -->
 <section id="pricing">
   <div class="wrap">
@@ -306,7 +235,6 @@
     </div>
 
     <div class="pricing-banner reveal">
-      <div class="ribbon-badge"><span>No Minimum Package</span></div>
       <div>
         <div class="price-tag">1$ <small>≈ 6,200 Ks</small></div>
         <h3>အနည်းဆုံး 1$ မှစ၍ Order တင်နိုင်ပါတယ်</h3>
@@ -434,7 +362,7 @@
         <h3>✅ နောက်ဆုံးအရေးကြီးသည့်အပိုင်း</h3>
         <p class="order-warning">
           ဒီ Website ကနေ Submit နှိပ်ရုံနဲ့ Order မပြီးမြောက်သေးပါ — အောက်က Order Summary ကို
-          <strong>Copy</strong> လုပ်ပြီး Telegram ကနေ <strong>t.me/SHMAcademy</strong> ကို ငွေလွဲစလစ်(Screenshort)နဲ့အတူ တိုက်ရိုက်
+          <strong>Copy</strong> လုပ်ပြီး Telegram ကနေ <strong>t.me/SHMAcademy</strong> ကို တိုက်ရိုက်
           Message ပို့ပေးမှသာ Order စတင်ဆောင်ရွက်ပေးပါမယ်။
         </p>
         <pre class="order-summary" id="orderSummary"></pre>
@@ -442,264 +370,6 @@
           <button type="button" class="btn btn-ghost" id="orderCopyBtn">Copy Summary</button>
           <a class="btn btn-primary" href="https://t.me/SHMAcademy" target="_blank" rel="noopener">Send on Telegram</a>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= AI PRO & PREMIUM ================= -->
-<section id="ai-products">
-  <div class="wrap">
-    <div class="section-head center reveal" style="margin-left:auto; margin-right:auto;">
-      <div class="k">New</div>
-      <h2>AI Pro &amp; <span class="accent">Premium Accounts</span></h2>
-      <p>ChatGPT, Gemini, Canva Pro, Perplexity — Premium AI Tool အားလုံးကို Reseller ဈေးနှုန်းနဲ့ ဝယ်ယူနိုင်ပါပြီ။</p>
-    </div>
-
-    <div class="prod-grid" id="prodGrid"><!-- populated by script.js from PRODUCTS list --></div>
-  </div>
-</section>
-
-<!-- Floating cart button -->
-<button type="button" class="cart-fab" id="cartFab" aria-label="Open cart">
-  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
-  <span class="cart-fab-count" id="cartCount">0</span>
-</button>
-
-<!-- Cart drawer -->
-<div class="cart-overlay" id="cartOverlay">
-  <div class="cart-drawer">
-    <div class="cart-drawer-head">
-      <h3>Your Cart</h3>
-      <button type="button" class="cart-close" id="cartCloseBtn" aria-label="Close cart">✕</button>
-    </div>
-    <div class="cart-items" id="cartItems"><!-- populated by script.js --></div>
-    <div class="cart-drawer-foot">
-      <div class="cart-total-row"><span>Total</span><b id="cartTotal">0 MMK</b></div>
-      <button type="button" class="btn btn-primary" id="cartCheckoutBtn" style="width:100%; justify-content:center;">Checkout</button>
-    </div>
-  </div>
-</div>
-
-<!-- Checkout modal -->
-<div class="checkout-overlay" id="checkoutOverlay">
-  <div class="checkout-modal">
-    <button type="button" class="cart-close" id="checkoutCloseBtn" aria-label="Close checkout">✕</button>
-
-    <div class="order-progress" id="checkoutProgress">
-      <div class="op-dot active" data-cdot="1">1</div>
-      <div class="op-line"></div>
-      <div class="op-dot" data-cdot="2">2</div>
-      <div class="op-line"></div>
-      <div class="op-dot" data-cdot="3">3</div>
-      <div class="op-line"></div>
-      <div class="op-dot" data-cdot="4">✓</div>
-    </div>
-
-    <!-- STEP 1 — Contact Information -->
-    <div class="order-step active" data-cstep="1">
-      <h3>1. Contact Information</h3>
-      <label class="order-label" for="coName">Full Name</label>
-      <input type="text" id="coName" class="order-input" placeholder="Your name">
-      <label class="order-label" for="coPhone">Phone Number</label>
-      <input type="text" id="coPhone" class="order-input" placeholder="09xxxxxxxxx">
-      <label class="order-label" for="coTelegram">Telegram Username</label>
-      <input type="text" id="coTelegram" class="order-input" placeholder="@yourusername">
-      <label class="order-label" for="coNotes">Delivery Notes (Email/Account details)</label>
-      <input type="text" id="coNotes" class="order-input" placeholder="e.g. Gmail account to invite">
-      <p class="order-error" id="cerr1"></p>
-      <div class="order-nav">
-        <span></span>
-        <button type="button" class="btn btn-primary" data-cgoto="2">Next</button>
-      </div>
-    </div>
-
-    <!-- STEP 2 — Payment Method -->
-    <div class="order-step" data-cstep="2">
-      <h3>2. ငွေပေးချေမှု နည်းလမ်း ရွေးပါ</h3>
-      <div class="choice-group" data-group="copayment">
-        <button type="button" class="choice-btn" data-value="Wave Money">Wave Money</button>
-        <button type="button" class="choice-btn" data-value="KBZPay">KBZPay</button>
-      </div>
-      <div class="payment-details" id="co-pd-wave" hidden>
-        <div class="pd-row"><span class="pd-label">Wave Money Number</span><span class="pd-value">09663346755</span><button type="button" class="pd-copy" data-copy="09663346755">Copy</button></div>
-        <div class="pd-row"><span class="pd-label">Name</span><span class="pd-value">U Shine Htet Myo</span></div>
-        <div class="pd-note">Notes တွင် <strong>&quot;Payment&quot;</strong> လို့သာ ရေးပေးပါ။</div>
-      </div>
-      <div class="payment-details" id="co-pd-kbz" hidden>
-        <div class="pd-row"><span class="pd-label">KBZPay Number</span><span class="pd-value">09663346755</span><button type="button" class="pd-copy" data-copy="09663346755">Copy</button></div>
-        <div class="pd-row"><span class="pd-label">Name</span><span class="pd-value">U Shine Htet Myo</span></div>
-        <div class="pd-note">Notes တွင် <strong>&quot;Payment&quot;</strong> လို့သာ ရေးပေးပါ။</div>
-      </div>
-      <p class="order-error" id="cerr2"></p>
-      <div class="order-nav">
-        <button type="button" class="btn btn-ghost" data-cgoto="1">Back</button>
-        <button type="button" class="btn btn-primary" data-cgoto="3">Next</button>
-      </div>
-    </div>
-
-    <!-- STEP 3 — Payment proof + confirm -->
-    <div class="order-step" data-cstep="3">
-      <h3>3. ငွေလွဲပြီးရင် အောက်ကအချက်တွေ ဖြည့်ပါ</h3>
-      <label class="order-label" for="coTxn">ငွေလွဲပြေစာ နောက်ဆုံး ID နံပါတ် ၅ လုံး</label>
-      <input type="text" id="coTxn" class="order-input" maxlength="5" placeholder="12345">
-      <label class="order-label" for="coAccName">ငွေလွဲထားသည့် အကောင့်နာမည်</label>
-      <input type="text" id="coAccName" class="order-input" placeholder="Wave/KBZ Account Name">
-      <label class="order-label" for="coProof">Payment Proof (Screenshot)</label>
-      <input type="file" id="coProof" class="order-input" accept="image/*" style="padding:10px 12px;">
-      <p class="order-hint">⚠️ Payment ပိုင်းဆိုင်ရာ ပြဿနာ ရှိပါက <strong>t.me/SHMAcademy</strong> ကို &quot;/payerror&quot; လို့ Message ပို့ပေးပါ — Team က ချက်ချင်း ကူညီပေးပါမယ်။</p>
-      <p class="order-error" id="cerr3"></p>
-      <div class="order-nav">
-        <button type="button" class="btn btn-ghost" data-cgoto="2">Back</button>
-        <button type="button" class="btn btn-primary" id="checkoutSubmit">Place Order</button>
-      </div>
-    </div>
-
-    <!-- STEP 4 — Final Telegram handoff -->
-    <div class="order-step" data-cstep="4">
-      <h3>✅ နောက်ဆုံးအရေးကြီးသည့်အပိုင်း</h3>
-      <p class="order-warning">
-        ဒီ Website ကနေ Submit နှိပ်ရုံနဲ့ Order မပြီးမြောက်သေးပါ — အောက်က Order Summary ကို
-        <strong>Copy</strong> လုပ်ပြီး Payment Screenshot နဲ့အတူ Telegram ကနေ <strong>t.me/SHMAcademy</strong>
-        ကို တိုက်ရိုက် Message ပို့ပေးမှသာ Order စတင်ဆောင်ရွက်ပေးပါမယ်။
-      </p>
-      <pre class="order-summary" id="checkoutSummary"></pre>
-      <div class="order-nav" style="justify-content:center; gap:14px; flex-wrap:wrap;">
-        <button type="button" class="btn btn-ghost" id="checkoutCopyBtn">Copy Summary</button>
-        <a class="btn btn-primary" href="https://t.me/SHMAcademy" target="_blank" rel="noopener">Send on Telegram</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= VPN PRODUCTS SECTION ================= -->
-<section id="vpn-services" style="padding: 40px 20px;">
-  <div class="wrap">
-    <div class="section-head center" style="text-align: center; margin-bottom: 30px;">
-      <div class="k" style="color: #3b9fe0; font-size: 14px; letter-spacing: 1px;">Fast &amp; Secure</div>
-      <h2 style="font-size: 28px; margin: 10px 0;">Outline &amp; V2Box VPN <span class="accent" style="color: #3b9fe0;">Custom Key ဝယ်ယူရန်</span></h2>
-      <p style="color: var(--text-dim, #a0aec0); font-size: 14px;">အင်တာနက်လိုင်းအခက်အခဲမရှိဘဲ လိုင်းဆွဲအားကောင်းမွန်ပြီး လုံခြုံစိတ်ချရသော VPN Key များကို လူကြီးမင်းတို့စိတ်ကြိုက် ဝယ်ယူရရှိနိုင်ပါပြီ။</p>
-    </div>
-
-    <!-- Product Grid Layout -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
-
-      <!-- Outline 80GB -->
-      <div class="product-card" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; color: #fff;">
-        <span style="background: rgba(59, 159, 224, 0.15); color: #3b9fe0; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 600;">VPN KEYS</span>
-        <h3 style="font-size: 18px; margin: 15px 0 10px 0;">Outline VPN (80GB / 30 Days)</h3>
-        <div style="font-size: 22px; font-weight: 700; margin-bottom: 20px;">8,000 <span style="font-size: 14px; color: var(--text-dim, #a0aec0);">MMK</span></div>
-        <div style="display: flex; gap: 10px;">
-          <button class="btn-cart" onclick="addToCart('Outline VPN 80GB', 8000)" style="flex: 1; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; cursor: pointer;">Add to Cart</button>
-          <a href="https://t.me/SHMAcademy?text=Hello%20I%20want%20to%20order%20Outline%20VPN%20(80GB%20/%2030%20Days)%20-%208,000%20MMK" target="_blank" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #2b7bb9, #3b9fe0); color: #fff; text-align: center; border-radius: 8px; text-decoration: none; font-weight: 600;">Order Now</a>
-        </div>
-      </div>
-
-      <!-- Outline 150GB -->
-      <div class="product-card" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; color: #fff;">
-        <span style="background: rgba(59, 159, 224, 0.15); color: #3b9fe0; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 600;">VPN KEYS</span>
-        <h3 style="font-size: 18px; margin: 15px 0 10px 0;">Outline VPN (150GB / 30 Days)</h3>
-        <div style="font-size: 22px; font-weight: 700; margin-bottom: 20px;">16,000 <span style="font-size: 14px; color: var(--text-dim, #a0aec0);">MMK</span></div>
-        <div style="display: flex; gap: 10px;">
-          <button class="btn-cart" onclick="addToCart('Outline VPN 150GB', 16000)" style="flex: 1; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; cursor: pointer;">Add to Cart</button>
-          <a href="https://t.me/SHMAcademy?text=Hello%20I%20want%20to%20order%20Outline%20VPN%20(150GB%20/%2030%20Days)%20-%2016,000%20MMK" target="_blank" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #2b7bb9, #3b9fe0); color: #fff; text-align: center; border-radius: 8px; text-decoration: none; font-weight: 600;">Order Now</a>
-        </div>
-      </div>
-
-      <!-- Outline 250GB -->
-      <div class="product-card" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; color: #fff;">
-        <span style="background: rgba(59, 159, 224, 0.15); color: #3b9fe0; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 600;">VPN KEYS</span>
-        <h3 style="font-size: 18px; margin: 15px 0 10px 0;">Outline VPN (250GB / 30 Days)</h3>
-        <div style="font-size: 22px; font-weight: 700; margin-bottom: 20px;">32,000 <span style="font-size: 14px; color: var(--text-dim, #a0aec0);">MMK</span></div>
-        <div style="display: flex; gap: 10px;">
-          <button class="btn-cart" onclick="addToCart('Outline VPN 250GB', 32000)" style="flex: 1; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; cursor: pointer;">Add to Cart</button>
-          <a href="https://t.me/SHMAcademy?text=Hello%20I%20want%20to%20order%20Outline%20VPN%20(250GB%20/%2030%20Days)%20-%2032,000%20MMK" target="_blank" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #2b7bb9, #3b9fe0); color: #fff; text-align: center; border-radius: 8px; text-decoration: none; font-weight: 600;">Order Now</a>
-        </div>
-      </div>
-
-      <!-- V2Box 1 Month -->
-      <div class="product-card" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; color: #fff;">
-        <span style="background: rgba(59, 159, 224, 0.15); color: #3b9fe0; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 600;">VPN KEYS</span>
-        <h3 style="font-size: 18px; margin: 15px 0 10px 0;">V2Box Unlimited (1 Month)</h3>
-        <div style="font-size: 22px; font-weight: 700; margin-bottom: 20px;">8,200 <span style="font-size: 14px; color: var(--text-dim, #a0aec0);">MMK</span></div>
-        <div style="display: flex; gap: 10px;">
-          <button class="btn-cart" onclick="addToCart('V2Box Unlimited 1 Month', 8200)" style="flex: 1; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; cursor: pointer;">Add to Cart</button>
-          <a href="https://t.me/SHMAcademy?text=Hello%20I%20want%20to%20order%20V2Box%20Unlimited%20(1%20Month)%20-%208,200%20MMK" target="_blank" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #2b7bb9, #3b9fe0); color: #fff; text-align: center; border-radius: 8px; text-decoration: none; font-weight: 600;">Order Now</a>
-        </div>
-      </div>
-
-      <!-- V2Box 3 Months -->
-      <div class="product-card" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; color: #fff;">
-        <span style="background: rgba(59, 159, 224, 0.15); color: #3b9fe0; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 600;">VPN KEYS</span>
-        <h3 style="font-size: 18px; margin: 15px 0 10px 0;">V2Box Unlimited (3 Months)</h3>
-        <div style="font-size: 22px; font-weight: 700; margin-bottom: 20px;">25,000 <span style="font-size: 14px; color: var(--text-dim, #a0aec0);">MMK</span></div>
-        <div style="display: flex; gap: 10px;">
-          <button class="btn-cart" onclick="addToCart('V2Box Unlimited 3 Months', 25000)" style="flex: 1; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; cursor: pointer;">Add to Cart</button>
-          <a href="https://t.me/SHMAcademy?text=Hello%20I%20want%20to%20order%20V2Box%20Unlimited%20(3%20Months)%20-%2025,000%20MMK" target="_blank" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #2b7bb9, #3b9fe0); color: #fff; text-align: center; border-radius: 8px; text-decoration: none; font-weight: 600;">Order Now</a>
-        </div>
-      </div>
-
-      <!-- V2Box 6 Months -->
-      <div class="product-card" style="background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; color: #fff;">
-        <span style="background: rgba(59, 159, 224, 0.15); color: #3b9fe0; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 600;">VPN KEYS</span>
-        <h3 style="font-size: 18px; margin: 15px 0 10px 0;">V2Box Unlimited (6 Months)</h3>
-        <div style="font-size: 22px; font-weight: 700; margin-bottom: 20px;">49,000 <span style="font-size: 14px; color: var(--text-dim, #a0aec0);">MMK</span></div>
-        <div style="display: flex; gap: 10px;">
-          <button class="btn-cart" onclick="addToCart('V2Box Unlimited 6 Months', 49000)" style="flex: 1; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 8px; cursor: pointer;">Add to Cart</button>
-          <a href="https://t.me/SHMAcademy?text=Hello%20I%20want%20to%20order%20V2Box%20Unlimited%20(6%20Months)%20-%2049,000%20MMK" target="_blank" style="flex: 1; padding: 10px; background: linear-gradient(135deg, #2b7bb9, #3b9fe0); color: #fff; text-align: center; border-radius: 8px; text-decoration: none; font-weight: 600;">Order Now</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<button type="button" class="choice-btn" data-value="Outline VPN">Outline VPN Key</button>
-<button type="button" class="choice-btn" data-value="V2Box VPN">V2Box VPN Key</button> 
-  
-<!-- ================= FEATURE MOCKUPS ================= -->
-<section id="features">
-  <div class="wrap">
-    <div class="section-head center reveal" style="margin-left:auto; margin-right:auto;">
-      <div class="k">Why it's easy</div>
-      <h2>Ordering Made <span class="accent">Effortless</span></h2>
-      <p>Complicated Form ဖြည့်စရာ မလိုပါ — Order Wizard တစ်ခုတည်းနဲ့ အစအဆုံး ပြီးအောင် ပြုလုပ်ပေးထားပါတယ်။</p>
-    </div>
-
-    <div class="feature-grid">
-      <div class="feature-card reveal">
-        <div class="fc-mock fc-mock-steps">
-          <div class="fm-dot done"></div>
-          <div class="fm-line done"></div>
-          <div class="fm-dot done"></div>
-          <div class="fm-line"></div>
-          <div class="fm-dot active"></div>
-          <div class="fm-line"></div>
-          <div class="fm-dot"></div>
-        </div>
-        <h3>Guided Order Flow</h3>
-        <p>Platform ရွေးရေးကနေ Payment အထိ — Step by Step Wizard တစ်ခုတည်းနဲ့ လမ်းညွှန်ပေးပါတယ်။</p>
-      </div>
-
-      <div class="feature-card reveal">
-        <div class="fc-mock fc-mock-chat">
-          <div class="fm-bubble left">Order တင်ချင်လို့ပါ</div>
-          <div class="fm-bubble right">ဟုတ်ကဲ့ Confirm ပါ ✅</div>
-          <div class="fm-bubble left short">ကျေးဇူးတင်ပါတယ်</div>
-        </div>
-        <h3>Instant Telegram Support</h3>
-        <p>t.me/SHMAcademy ကနေ တိုက်ရိုက် Message ပို့ပြီး Team နဲ့ ချက်ချင်း ဆက်သွယ်နိုင်ပါတယ်။</p>
-      </div>
-
-      <div class="feature-card reveal">
-        <div class="fc-mock fc-mock-price">
-          <div class="fm-price-row"><span>1,000</span><b>6,200 Ks</b></div>
-          <div class="fm-price-row"><span>3,000</span><b>18,600 Ks</b></div>
-          <div class="fm-price-row active"><span>5,000</span><b>31,000 Ks</b></div>
-          <div class="fm-price-bar"></div>
-        </div>
-        <h3>Transparent Live Pricing</h3>
-        <p>Quantity ရိုက်တာနဲ့ ကျသင့်ငွေက Live Update ဖြစ်ပါတယ် — ဝှက်ထားတဲ့ Charge လုံးဝမရှိပါ။</p>
       </div>
     </div>
   </div>
@@ -886,31 +556,6 @@
   </div>
 </section>
 
-<!-- ================= COURSE ================= -->
-<section id="course">
-  <div class="wrap">
-    <div class="course-banner reveal">
-      <div class="course-glow g1"></div>
-      <div class="course-glow g2"></div>
-      <div class="course-content">
-        <div class="eyebrow" style="margin-left:auto; margin-right:auto;"><span class="dot"></span> New — Digital Marketing Course</div>
-        <div class="course-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 10v6"/></svg>
-        </div>
-        <h2>Digital Marketing ကို <span class="accent">စနစ်တကျ</span> သင်ယူလိုက်ပါ</h2>
-        <p>
-          Social Media Marketing, Ad Campaign, Content Strategy အစရှိတဲ့ Digital Marketing Skill
-          အားလုံးကို အခြေခံကနေ လက်တွေ့အထိ သင်ကြားပေးမည့် SHM ရဲ့ သင်တန်းသစ် စတင်လက်ခံနေပါပြီ။
-          စိတ်ဝင်စားသူများ အောက်က Form ကနေ စာရင်းပေးသွင်းနိုင်ပါတယ်။
-        </p>
-        <div class="hero-actions" style="justify-content:center; margin-top:28px;">
-          <a class="btn btn-primary" href="https://forms.gle/EzdJjU5FdmijqSJGA" target="_blank" rel="noopener">Register Now →</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ================= FOUNDER ================= -->
 <section id="founder">
   <div class="wrap">
@@ -973,6 +618,140 @@
   </div>
 </section>
 
+<!-- ================= NEW: VPN PRODUCTS SECTION ================= -->
+<section id="vpn-products">
+  <div class="wrap">
+    <div class="section-head center reveal" style="margin-left:auto; margin-right:auto;">
+      <div class="k">VPN Products</div>
+      <h2>Secure &amp; Private <span class="accent">VPN Plans</span></h2>
+      <p>Choose between Ai Pro &amp; Premium VPN packages with flexible payment options and full Telegram handoff.</p>
+    </div>
+
+    <!-- VPN Product Cards -->
+    <div class="services-grid" style="margin-bottom: 2.5rem;">
+      <div class="service-card reveal" style="border-color: #4a9eff;">
+        <div class="service-icon" style="background: #1a2a6a;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Ai Pro VPN</h3>
+        <p>High-speed, unlimited bandwidth, 5 devices. Ideal for streaming and daily use.</p>
+        <div style="margin-top: 12px; font-weight: 700; font-size: 1.4rem; color: var(--accent);">$9.99 <span style="font-size: 0.9rem; font-weight:400; color: var(--text-light);">/mo</span></div>
+        <button class="btn btn-primary" style="margin-top: 16px;" data-vpn-plan="Ai Pro VPN" data-price="9.99">Select Plan</button>
+      </div>
+
+      <div class="service-card reveal" style="border-color: #f5a623;">
+        <div class="service-icon" style="background: #2a1a4a;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/><path d="M2 7v10"/><path d="M22 7v10"/></svg>
+        </div>
+        <h3>Premium VPN</h3>
+        <p>Dedicated IP, multi-hop, 10 devices, ad-blocker, and priority support.</p>
+        <div style="margin-top: 12px; font-weight: 700; font-size: 1.4rem; color: var(--accent);">$14.99 <span style="font-size: 0.9rem; font-weight:400; color: var(--text-light);">/mo</span></div>
+        <button class="btn btn-primary" style="margin-top: 16px;" data-vpn-plan="Premium VPN" data-price="14.99">Select Plan</button>
+      </div>
+    </div>
+
+    <!-- ============ VPN CHECKOUT MODAL (identical structure to Ai Pro & Premium) ============ -->
+    <div class="order-wizard reveal" id="vpnCheckout" style="margin-top: 2rem;">
+      <div class="order-progress" id="vpnProgress">
+        <div class="op-dot active" data-dot="1">1</div>
+        <div class="op-line"></div>
+        <div class="op-dot" data-dot="2">2</div>
+        <div class="op-line"></div>
+        <div class="op-dot" data-dot="3">3</div>
+        <div class="op-line"></div>
+        <div class="op-dot" data-dot="4">4</div>
+        <div class="op-line"></div>
+        <div class="op-dot" data-dot="5">✓</div>
+      </div>
+
+      <!-- STEP 1 — Contact Information -->
+      <div class="order-step active" data-step="1" data-vpn-step="1">
+        <h3>STEP 1 — Contact Information</h3>
+        <label class="order-label" for="vpnName">Full Name</label>
+        <input type="text" id="vpnName" class="order-input" placeholder="e.g. Kyaw Kyaw">
+
+        <label class="order-label" for="vpnEmail">Email Address</label>
+        <input type="email" id="vpnEmail" class="order-input" placeholder="you@example.com">
+
+        <label class="order-label" for="vpnTelegram">Telegram Username</label>
+        <input type="text" id="vpnTelegram" class="order-input" placeholder="@yourtelegram">
+
+        <p class="order-error" id="vpnErr1"></p>
+        <div class="order-nav">
+          <span></span>
+          <button type="button" class="btn btn-primary" data-vpn-goto="2">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 — Payment Method -->
+      <div class="order-step" data-step="2" data-vpn-step="2">
+        <h3>STEP 2 — Payment Method</h3>
+        <div class="choice-group" data-group="vpn-payment">
+          <button type="button" class="choice-btn" data-value="Wave Money">Wave Money</button>
+          <button type="button" class="choice-btn" data-value="KBZPay">KBZPay</button>
+          <button type="button" class="choice-btn" data-value="Crypto (USDT)">Crypto (USDT)</button>
+        </div>
+
+        <div class="payment-details" id="vpd-wave" hidden>
+          <div class="pd-row"><span class="pd-label">Wave Money Number</span><span class="pd-value">09663346755</span><button type="button" class="pd-copy" data-copy="09663346755">Copy</button></div>
+          <div class="pd-row"><span class="pd-label">Name</span><span class="pd-value">U Shine Htet Myo</span></div>
+          <div class="pd-note">Notes: <strong>"VPN Payment"</strong></div>
+        </div>
+        <div class="payment-details" id="vpd-kbz" hidden>
+          <div class="pd-row"><span class="pd-label">KBZPay Number</span><span class="pd-value">09663346755</span><button type="button" class="pd-copy" data-copy="09663346755">Copy</button></div>
+          <div class="pd-row"><span class="pd-label">Name</span><span class="pd-value">U Shine Htet Myo</span></div>
+          <div class="pd-note">Notes: <strong>"VPN Payment"</strong></div>
+        </div>
+        <div class="payment-details" id="vpd-crypto" hidden>
+          <div class="pd-row"><span class="pd-label">USDT (BEP20)</span><span class="pd-value">0x1a2b3c4d5e6f...7890</span><button type="button" class="pd-copy" data-copy="0x1a2b3c4d5e6f...7890">Copy</button></div>
+          <div class="pd-note">Send exact amount in USDT. We'll confirm within 15 minutes.</div>
+        </div>
+
+        <p class="order-error" id="vpnErr2"></p>
+        <div class="order-nav">
+          <button type="button" class="btn btn-ghost" data-vpn-goto="1">Back</button>
+          <button type="button" class="btn btn-primary" data-vpn-goto="3">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 — Payment proof + confirm -->
+      <div class="order-step" data-step="3" data-vpn-step="3">
+        <h3>STEP 3 — Payment proof + confirm</h3>
+        <label class="order-label" for="vpnTxn">Transaction ID / Reference (last 5 digits)</label>
+        <input type="text" id="vpnTxn" class="order-input" maxlength="5" placeholder="e.g. 12345">
+
+        <label class="order-label" for="vpnAccName">Account Name used for payment</label>
+        <input type="text" id="vpnAccName" class="order-input" placeholder="e.g. Kyaw Kyaw">
+
+        <div class="order-price-box" style="margin-top: 16px;">
+          <span>Selected Plan</span>
+          <span class="order-price" id="vpnSelectedPlan">—</span>
+        </div>
+
+        <p class="order-error" id="vpnErr3"></p>
+        <div class="order-nav">
+          <button type="button" class="btn btn-ghost" data-vpn-goto="2">Back</button>
+          <button type="button" class="btn btn-primary" id="vpnSubmit">Submit Order</button>
+        </div>
+      </div>
+
+      <!-- STEP 4 — Final Telegram handoff -->
+      <div class="order-step" data-step="4" data-vpn-step="4">
+        <h3>✅ STEP 4 — Final Telegram handoff</h3>
+        <p class="order-warning">
+          <strong>Important:</strong> Copy the summary below and send it to <strong>t.me/SHMAcademy</strong> on Telegram.
+          Your VPN order will be processed after we receive your message.
+        </p>
+        <pre class="order-summary" id="vpnOrderSummary"></pre>
+        <div class="order-nav" style="justify-content:center; gap:14px; flex-wrap:wrap;">
+          <button type="button" class="btn btn-ghost" id="vpnCopyBtn">Copy Summary</button>
+          <a class="btn btn-primary" href="https://t.me/SHMAcademy" target="_blank" rel="noopener">Send on Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= FINAL CTA ================= -->
 <section id="cta-final">
   <div class="wrap">
@@ -1019,42 +798,134 @@
 </footer>
 
 <script src="script.js"></script>
-
-<!-- ================= GSAP + SCROLLTRIGGER (background parallax only) ================= -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
-(function () {
-  // Safe no-op if the CDN failed to load (offline, ad-blocker, etc.) or the
-  // user prefers reduced motion — the background layer just stays static.
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  (function() {
+    // VPN Checkout logic - identical to main order wizard but scoped to VPN
+    const vpnSteps = document.querySelectorAll('#vpnCheckout .order-step');
+    const vpnDots = document.querySelectorAll('#vpnProgress .op-dot');
+    let vpnCurrentStep = 1;
+    let selectedPlan = '';
+    let selectedPrice = '';
 
-  gsap.registerPlugin(ScrollTrigger);
-
-  var orbs = gsap.utils.toArray('#gsap-bg-canvas .pbg-orb');
-  if (!orbs.length) return;
-
-  // Each orb drifts and rotates at a slightly different rate as the whole
-  // page scrolls, giving a slow ambient parallax feel. scrub:true ties the
-  // animation directly to scroll position (no independent ticking cost),
-  // and everything animates only transform/opacity so it stays GPU-cheap.
-  orbs.forEach(function (orb, i) {
-    var dir = i % 2 === 0 ? 1 : -1;
-    gsap.to(orb, {
-      yPercent: 30 * dir,
-      xPercent: 12 * dir,
-      rotation: 25 * dir,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: document.body,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 1
-      }
+    // Listen for plan selection buttons
+    document.querySelectorAll('[data-vpn-plan]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        selectedPlan = this.dataset.vpnPlan;
+        selectedPrice = this.dataset.price;
+        document.getElementById('vpnSelectedPlan').textContent = selectedPlan + ' ($' + selectedPrice + '/mo)';
+        // reset to step 1
+        goToVpnStep(1);
+        // scroll to checkout
+        document.getElementById('vpnCheckout').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
-  });
-})();
+
+    // Navigation
+    document.querySelectorAll('[data-vpn-goto]').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const step = parseInt(this.dataset.vpnGoto);
+        goToVpnStep(step);
+      });
+    });
+
+    // Payment method toggle
+    document.querySelectorAll('#vpnCheckout .choice-group[data-group="vpn-payment"] .choice-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const val = this.dataset.value;
+        // hide all
+        document.querySelectorAll('#vpnCheckout .payment-details').forEach(el => el.hidden = true);
+        // show matching
+        const map = {
+          'Wave Money': 'vpd-wave',
+          'KBZPay': 'vpd-kbz',
+          'Crypto (USDT)': 'vpd-crypto'
+        };
+        const target = document.getElementById(map[val]);
+        if (target) target.hidden = false;
+        // highlight selected
+        this.closest('.choice-group').querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+
+    // Copy button
+    document.querySelectorAll('.pd-copy').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const text = this.dataset.copy;
+        navigator.clipboard.writeText(text).then(() => {
+          this.textContent = 'Copied!';
+          setTimeout(() => { this.textContent = 'Copy'; }, 1500);
+        });
+      });
+    });
+
+    // Submit
+    document.getElementById('vpnSubmit').addEventListener('click', function() {
+      const name = document.getElementById('vpnName').value.trim();
+      const email = document.getElementById('vpnEmail').value.trim();
+      const tg = document.getElementById('vpnTelegram').value.trim();
+      const txn = document.getElementById('vpnTxn').value.trim();
+      const accName = document.getElementById('vpnAccName').value.trim();
+      const paymentMethod = document.querySelector('#vpnCheckout .choice-group[data-group="vpn-payment"] .choice-btn.selected');
+      const err3 = document.getElementById('vpnErr3');
+
+      if (!name || !email || !tg || !txn || !accName || !paymentMethod) {
+        err3.textContent = 'Please fill in all fields and select a payment method.';
+        return;
+      }
+      err3.textContent = '';
+
+      // Build summary
+      const summary = 
+`VPN ORDER SUMMARY
+─────────────────
+Plan: ${selectedPlan}
+Price: $${selectedPrice}/mo
+Name: ${name}
+Email: ${email}
+Telegram: ${tg}
+Payment: ${paymentMethod.dataset.value}
+Txn ID: ${txn}
+Account Name: ${accName}
+─────────────────
+Send this to t.me/SHMAcademy to confirm.`;
+      document.getElementById('vpnOrderSummary').textContent = summary;
+      goToVpnStep(4);
+    });
+
+    // Copy summary
+    document.getElementById('vpnCopyBtn').addEventListener('click', function() {
+      const text = document.getElementById('vpnOrderSummary').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        this.textContent = 'Copied!';
+        setTimeout(() => { this.textContent = 'Copy Summary'; }, 1500);
+      });
+    });
+
+    function goToVpnStep(step) {
+      vpnCurrentStep = step;
+      vpnSteps.forEach((el, idx) => {
+        const s = parseInt(el.dataset.vpnStep);
+        el.classList.toggle('active', s === step);
+      });
+      vpnDots.forEach((dot, idx) => {
+        const d = parseInt(dot.dataset.dot);
+        dot.classList.toggle('active', d <= step);
+        // dot 5 is checkmark, treat as final
+        if (d === 5 && step === 5) dot.classList.add('active');
+      });
+      // update progress line
+      const lines = document.querySelectorAll('#vpnProgress .op-line');
+      lines.forEach((line, idx) => {
+        // line between dot idx+1 and idx+2
+        const dotIndex = idx + 1;
+        line.classList.toggle('active', dotIndex < step);
+      });
+    }
+
+    // init: show step 1
+    goToVpnStep(1);
+  })();
 </script>
 </body>
 </html>
